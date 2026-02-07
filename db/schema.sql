@@ -61,6 +61,43 @@ CREATE TABLE IF NOT EXISTS zone (
 );
 
 -- =========================
+-- ITENS (criar ANTES de users)
+-- =========================
+CREATE TABLE IF NOT EXISTS items (
+	id BIGSERIAL PRIMARY KEY,
+	name TEXT NOT NULL,
+
+	basedamage INT,
+	basedefense INT,
+
+	tier INT NOT NULL,
+	subtier INT NOT NULL,
+
+	slot_id INT NOT NULL,
+	is_collectible BOOLEAN DEFAULT FALSE,
+
+	created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- =========================
+-- HIDEOUTS (criar ANTES de users)
+-- =========================
+CREATE TABLE IF NOT EXISTS hideouts (
+    id SERIAL PRIMARY KEY,
+    guild_id INT NOT NULL REFERENCES guilds(id) ON DELETE CASCADE,
+    alliance_id INT REFERENCES alliances(id) ON DELETE SET NULL,
+    zone_id BIGINT NOT NULL REFERENCES zone(zone_id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    energy INT DEFAULT 100,
+    max_energy INT DEFAULT 100,
+    durability INT DEFAULT 100,
+    max_durability INT DEFAULT 100,
+    "level" INT DEFAULT 1,
+    last_recharge TIMESTAMP,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- =========================
 -- USUÁRIOS
 -- =========================
 CREATE TABLE IF NOT EXISTS users (
@@ -79,25 +116,6 @@ CREATE TABLE IF NOT EXISTS users (
     fame_crafting BIGINT DEFAULT 0,
     fame_exploration BIGINT DEFAULT 0,
     fame_trading BIGINT DEFAULT 0
-);
-
--- =========================
--- ITENS
--- =========================
-CREATE TABLE IF NOT EXISTS items (
-	id BIGSERIAL PRIMARY KEY,
-	name TEXT NOT NULL,
-
-	basedamage INT,
-	basedefense INT,
-
-	tier INT NOT NULL,
-	subtier INT NOT NULL,
-
-	slot_id INT NOT NULL,
-	is_collectible BOOLEAN DEFAULT FALSE,
-
-	created_at TIMESTAMP DEFAULT NOW()
 );
 
 -- =========================
@@ -154,25 +172,6 @@ CREATE TABLE IF NOT EXISTS city_shop (
     price INT NOT NULL,
     PRIMARY KEY (item_id)
 );
-
--- =========================
--- HIDEOUTS (Max 7 per guild)
--- =========================
-CREATE TABLE IF NOT EXISTS hideouts (
-    id SERIAL PRIMARY KEY,
-    guild_id INT NOT NULL REFERENCES guilds(id) ON DELETE CASCADE,
-    alliance_id INT REFERENCES alliances(id) ON DELETE SET NULL,
-    zone_id BIGINT NOT NULL REFERENCES zone(zone_id) ON DELETE CASCADE,
-    name TEXT NOT NULL,
-    energy INT DEFAULT 100,
-    max_energy INT DEFAULT 100,
-    durability INT DEFAULT 100,
-    max_durability INT DEFAULT 100,
-    "level" INT DEFAULT 1,
-    last_recharge TIMESTAMP,
-    created_at TIMESTAMP DEFAULT NOW()
-);
-
 
 -- =========================
 -- GUILD LOGS
