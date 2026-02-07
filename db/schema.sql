@@ -230,8 +230,7 @@ CREATE TABLE IF NOT EXISTS auction (
     ends_at TIMESTAMP NOT NULL,
     status TEXT DEFAULT 'active' CHECK (status IN ('active', 'ended', 'cancelled')),
     created_at TIMESTAMP DEFAULT NOW()
-);,
-    tier INT DEFAULT 1
+);
 
 -- =========================
 -- ECONOMY
