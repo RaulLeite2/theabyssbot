@@ -112,8 +112,26 @@ class Database:
         with open(file, "r", encoding="utf-8") as f:
             sql = f.read()
 
+        # Dividir por ponto-e-vírgula e executar cada comando separadamente
+        # Remove comentários e espaços em branco
+        commands = []
+        for statement in sql.split(';'):
+            # Remove comentários de linha
+            lines = [line.split('--')[0].strip() for line in statement.split('\n')]
+            command = ' '.join(lines).strip()
+            if command:  # Só executa se não estiver vazio
+                commands.append(command)
+        
         async with self.acquire() as conn:
-            await conn.execute(sql, *args)
+            for i, command in enumerate(commands, 1):
+                try:
+                    await conn.execute(command, *args)
+                except Exception as e:
+                    print(f"❌ Erro ao executar comando {i}/{len(commands)}: {e}")
+                    print(f"   Command: {command[:100]}...")
+                    raise
+            
+            print(f"✅ {len(commands)} comandos SQL executados com sucesso!")
 
     async def fetchrow(self, sql, *args):
         async with self.acquire() as conn:
