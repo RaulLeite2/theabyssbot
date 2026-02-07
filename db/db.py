@@ -24,6 +24,25 @@ class Database:
         max_retries = 5
         retry_delay = 2  # segundos
         
+        # Debug: Mostrar informações de conexão (sem senha)
+        if DATABASE_URL:
+            # Parse URL para mostrar host sem senha
+            try:
+                from urllib.parse import urlparse
+                parsed = urlparse(DATABASE_URL)
+                print(f"\n🔍 DEBUG DATABASE_URL:")
+                print(f"   Host: {parsed.hostname}")
+                print(f"   Port: {parsed.port}")
+                print(f"   Database: {parsed.path.lstrip('/')}")
+                print(f"   User: {parsed.username}")
+            except Exception as e:
+                print(f"⚠️ Erro ao parsear DATABASE_URL: {e}")
+        else:
+            print(f"\n🔍 DEBUG Variáveis individuais:")
+            print(f"   Host: {DB_HOST}")
+            print(f"   Database: {DB_NAME}")
+            print(f"   User: {DB_USER}")
+        
         for attempt in range(1, max_retries + 1):
             try:
                 # Prioriza DATABASE_URL (Railway/produção)
