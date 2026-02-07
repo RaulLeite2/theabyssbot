@@ -112,15 +112,61 @@ class Database:
         with open(file, "r", encoding="utf-8") as f:
             sql = f.read()
 
-        # Dividir por ponto-e-vírgula e executar cada comando separadamente
-        # Remove comentários e espaços em branco
+        # Parse SQL respecting dollar-quoted strings (for PL/PGSQL)
         commands = []
-        for statement in sql.split(';'):
-            # Remove comentários de linha
-            lines = [line.split('--')[0].strip() for line in statement.split('\n')]
-            command = ' '.join(lines).strip()
-            if command:  # Só executa se não estiver vazio
-                commands.append(command)
+        current_command = []
+        in_dollar_quote = False
+        dollar_tag = None
+        i = 0
+        
+        while i < len(sql):
+            char = sql[i]
+            
+            # Check for dollar quote start/end
+            if char == '$' and (not in_dollar_quote or sql[i:i+len(dollar_tag)+1] == dollar_tag + '$'):
+                if not in_dollar_quote:
+                    # Starting dollar quote - find the tag
+                    j = i + 1
+                    while j < len(sql) and sql[j] != '$':
+                        j += 1
+                    if j < len(sql):
+                        dollar_tag = sql[i+1:j]
+                        in_dollar_quote = True
+                        current_command.append(sql[i:j+1])
+                        i = j + 1
+                        continue
+                else:
+                    # Ending dollar quote
+                    end_tag = dollar_tag + '$'
+                    if sql[i:i+len(end_tag)] == end_tag:
+                        in_dollar_quote = False
+                        current_command.append(end_tag)
+                        i += len(end_tag)
+                        dollar_tag = None
+                        continue
+            
+            # Track semicolons outside dollar quotes
+            if char == ';' and not in_dollar_quote:
+                current_command.append(char)
+                command_text = ''.join(current_command).strip()
+                # Remove line comments
+                lines = [line.split('--')[0].strip() for line in command_text.split('\n')]
+                command = ' '.join(lines).strip()
+                if command and command != ';':
+                    commands.append(command)
+                current_command = []
+                i += 1
+                continue
+            
+            current_command.append(char)
+            i += 1
+        
+        # Add any remaining command
+        command_text = ''.join(current_command).strip()
+        lines = [line.split('--')[0].strip() for line in command_text.split('\n')]
+        command = ' '.join(lines).strip()
+        if command:
+            commands.append(command)
         
         async with self.acquire() as conn:
             for i, command in enumerate(commands, 1):
