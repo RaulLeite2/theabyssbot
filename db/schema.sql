@@ -646,7 +646,6 @@ COMMENT ON COLUMN users.previous_zone_id IS 'Zona onde o player estava antes de 
 COMMENT ON COLUMN users.equipped_weapon IS 'Item de arma equipado (usado para calcular power score)';
 COMMENT ON COLUMN users.equipped_armor IS 'Item de armadura equipado (usado para calcular power score)';
 COMMENT ON COLUMN items.is_collectible IS 'Indica se o item é um recurso coletável (madeira, pedra, etc)';
-COMMENT ON COLUMN resources.tier IS 'Tier do recurso (1-10), indica raridade e poder';
 COMMENT ON COLUMN npc_reputation.reputation IS 'Pontos de reputação (0-10000+)';
 COMMENT ON COLUMN npc_reputation.title IS 'Título atual com o NPC baseado na reputação';
 COMMENT ON COLUMN traveling_merchant.despawn_at IS 'Quando o mercador vai desaparecer';
