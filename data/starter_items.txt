@@ -1,0 +1,459 @@
+════════════════════════════════════════════════════════
+       COMANDOS PARA CRIAR ITENS INICIAIS - THE ABYSS
+════════════════════════════════════════════════════════
+
+Este arquivo contém todos os comandos necessários para criar
+os itens básicos do jogo. Execute-os em ordem no Discord.
+
+
+════════════════════════════════════════════════════════
+           RECURSOS COLETÁVEIS (CRIAR PRIMEIRO!)
+════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE: Crie estes recursos ANTES dos itens normais!
+Eles são usados no sistema de crafting e exploração.
+
+🪵 MADEIRA
+/genitem nome:"Madeira" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+🪨 PEDRA
+/genitem nome:"Pedra" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+⛏️ MINÉRIO
+/genitem nome:"Minério" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+🧵 FIBRA
+/genitem nome:"Fibra" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+🦌 PELEGO
+/genitem nome:"Pelego" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+💎 CRISTAL (Recurso Raro)
+/genitem nome:"Cristal" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+🌿 ERVAS MEDICINAIS
+/genitem nome:"Ervas Medicinais" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+📝 NOTA: Recursos coletáveis usam slot_id:9 para diferenciá-los de equipamentos
+
+════════════════════════════════════════════════════════
+                    SLOT IDS REFERENCE
+════════════════════════════════════════════════════════
+1 = Amuleto
+2 = Cabeça (Head)
+3 = Pernas (Legs)
+4 = Mão Principal (Main Hand) - ARMAS
+5 = Torso (Chest)
+6 = Mão Secundária (Off Hand)
+7 = Costas (Back/Cape)
+8 = Pés (Feet)
+
+════════════════════════════════════════════════════════
+               TIER 1 - ITENS INICIAIS (STARTER)
+════════════════════════════════════════════════════════
+
+--- ARMAS (Slot 4 - Mão Principal) ---
+/genitem nome:"Espada Enferrujada" base_damage:5 slot_id:4 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Adaga Quebrada" base_damage:5 slot_id:4 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Machado de Pedra" base_damage:5 slot_id:4 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Cajado de Madeira" base_damage:5 slot_id:4 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Arco Rudimentar" base_damage:5 slot_id:4 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+
+--- CABEÇA (Slot 2) ---
+/genitem nome:"Elmo Rachado" base_defense:4 slot_id:2 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Capuz de Pano" base_defense:4 slot_id:2 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Capacete de Couro" base_defense:4 slot_id:2 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+
+--- TORSO (Slot 5) ---
+/genitem nome:"Armadura de Couro Gasto" base_defense:5 slot_id:5 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Túnica Rasgada" base_defense:5 slot_id:5 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Peitoral de Ferro Velho" base_defense:5 slot_id:5 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+
+--- PERNAS (Slot 3) ---
+/genitem nome:"Calças de Pano" base_defense:4 slot_id:3 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Calças de Couro" base_defense:4 slot_id:3 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Grevas Simples" base_defense:4 slot_id:3 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+
+--- PÉS (Slot 8) ---
+/genitem nome:"Botas Desgastadas" base_defense:3 slot_id:8 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Sandálias de Couro" base_defense:3 slot_id:8 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Sapatos Reforçados" base_defense:3 slot_id:8 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+
+--- MÃO SECUNDÁRIA (Slot 6) ---
+/genitem nome:"Anel do Iniciante" base_defense:2 slot_id:6 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Escudo de Madeira" base_defense:3 slot_id:6 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+/genitem nome:"Bracelete Simples" base_defense:2 slot_id:6 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0
+
+
+════════════════════════════════════════════════════════
+            TIER 2-3 - ITENS INTERMEDIÁRIOS
+════════════════════════════════════════════════════════
+
+--- ARMAS TIER 2-3 ---
+/genitem nome:"Espada de Ferro" base_damage:10 slot_id:4 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Adaga Afiada" base_damage:10 slot_id:4 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Machado de Batalha" base_damage:10 slot_id:4 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Cajado Místico" base_damage:10 slot_id:4 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Arco Longo" base_damage:10 slot_id:4 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+
+--- ARMADURAS TIER 2-3 ---
+/genitem nome:"Elmo de Ferro" base_defense:8 slot_id:2 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Peitoral de Aço" base_defense:10 slot_id:5 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Calças de Malha" base_defense:8 slot_id:3 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Botas de Ferro" base_defense:6 slot_id:8 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+/genitem nome:"Escudo de Ferro" base_defense:7 slot_id:6 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+
+
+════════════════════════════════════════════════════════
+              TIER 4-5 - ITENS AVANÇADOS
+════════════════════════════════════════════════════════
+
+--- ARMAS TIER 4-5 ---
+/genitem nome:"Lâmina do Abismo" base_damage:25 slot_id:4 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Punhais Sombrios" base_damage:25 slot_id:4 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Martelo dos Titãs" base_damage:25 slot_id:4 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Cetro Arcano" base_damage:25 slot_id:4 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Arco Élfico" base_damage:25 slot_id:4 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+
+--- ARMADURAS TIER 4-5 ---
+/genitem nome:"Coroa do Abismo" base_defense:18 slot_id:2 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Armadura das Sombras" base_defense:22 slot_id:5 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Calças do Guardião" base_defense:18 slot_id:3 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Botas Aladas" base_defense:14 slot_id:8 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+/genitem nome:"Escudo Encantado" base_defense:16 slot_id:6 start_tier:4 start_subtier:0 end_tier:5 end_subtier:4
+
+
+════════════════════════════════════════════════════════
+              TIER 6-8 - ITENS LENDÁRIOS
+════════════════════════════════════════════════════════
+
+--- ARMAS TIER 6-8 ---
+/genitem nome:"Devastadora do Infinito" base_damage:45 slot_id:4 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Adagas da Eternidade" base_damage:45 slot_id:4 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Mjolnir Sombrio" base_damage:45 slot_id:4 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Cajado das Eras" base_damage:45 slot_id:4 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Arco Divino" base_damage:45 slot_id:4 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+
+--- ARMADURAS TIER 6-8 ---
+/genitem nome:"Diadema do Cosmos" base_defense:36 slot_id:2 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Peitoral do Titã" base_defense:42 slot_id:5 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Calças Primordiais" base_defense:36 slot_id:3 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Botas do Vento" base_defense:30 slot_id:8 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+/genitem nome:"Égide Celestial" base_defense:34 slot_id:6 start_tier:6 start_subtier:0 end_tier:8 end_subtier:4
+
+
+════════════════════════════════════════════════════════
+           RECEITAS DE CRAFT PARA TODOS OS ITENS
+════════════════════════════════════════════════════════
+
+⚠️ IMPORTANTE: Use /getitem para verificar os IDs reais dos itens após criá-los!
+Os IDs abaixo são exemplos. Substitua pelos IDs corretos do seu banco de dados.
+
+📝 DICA: Com a nova funcionalidade, você só precisa criar a receita do PRIMEIRO
+tier de cada item! O bot perguntará se quer criar para todos os tiers automaticamente.
+
+════════════════════════════════════════════════════════
+            TIER 1 - RECEITAS INICIAIS (STARTER)
+════════════════════════════════════════════════════════
+
+--- ARMAS TIER 1 (Slot 4) ---
+/addcraft item_id:1 madeira:15 minerio:10 pedra:5
+/addcraft item_id:2 madeira:15 minerio:10 pedra:5
+/addcraft item_id:3 madeira:20 pedra:15
+/addcraft item_id:4 madeira:25 fibra:5
+/addcraft item_id:5 madeira:20 fibra:8 pedra:2
+
+--- CABEÇA TIER 1 (Slot 2) ---
+/addcraft item_id:6 minerio:8 fibra:10 pelego:5
+/addcraft item_id:7 fibra:15 pelego:8
+/addcraft item_id:8 pelego:12 fibra:8 madeira:5
+
+--- TORSO TIER 1 (Slot 5) ---
+/addcraft item_id:9 pelego:18 fibra:12
+/addcraft item_id:10 fibra:20 madeira:5
+/addcraft item_id:11 minerio:15 pelego:10
+
+--- PERNAS TIER 1 (Slot 3) ---
+/addcraft item_id:12 fibra:15 pelego:5
+/addcraft item_id:13 pelego:15 fibra:8
+/addcraft item_id:14 minerio:10 fibra:10
+
+--- PÉS TIER 1 (Slot 8) ---
+/addcraft item_id:15 pelego:10 madeira:8
+/addcraft item_id:16 pelego:12 fibra:5
+/addcraft item_id:17 pelego:10 minerio:5
+
+--- MÃO SECUNDÁRIA TIER 1 (Slot 6) ---
+/addcraft item_id:18 minerio:12 fibra:5
+/addcraft item_id:19 madeira:15 pelego:8
+/addcraft item_id:20 minerio:10 fibra:5
+
+
+════════════════════════════════════════════════════════
+          TIER 2-3 - RECEITAS INTERMEDIÁRIAS
+════════════════════════════════════════════════════════
+
+💡 ATALHO: Use o primeiro tier de cada item e escolha "Criar Para Todos os Tiers"
+O bot criará automaticamente as receitas para T2.0, T2.1, T2.2, T2.3, T2.4, T3.0, etc.
+
+--- ARMAS TIER 2-3 (Slot 4) ---
+Espada de Ferro T2.0:
+/addcraft item_id:21 madeira:40 minerio:50 pedra:20
+
+Adaga Afiada T2.0:
+/addcraft item_id:31 madeira:35 minerio:45 pedra:20
+
+Machado de Batalha T2.0:
+/addcraft item_id:41 madeira:50 minerio:40 pedra:25
+
+Cajado Místico T2.0:
+/addcraft item_id:51 madeira:60 fibra:30 minerio:10
+
+Arco Longo T2.0:
+/addcraft item_id:61 madeira:50 fibra:35 pedra:10
+
+--- ARMADURAS TIER 2-3 (Slot 2, 3, 5, 6, 8) ---
+Elmo de Ferro T2.0:
+/addcraft item_id:71 minerio:40 fibra:25 pelego:15
+
+Peitoral de Aço T2.0:
+/addcraft item_id:81 minerio:60 fibra:35 pelego:25
+
+Calças de Malha T2.0:
+/addcraft item_id:91 fibra:45 pelego:30 minerio:15
+
+Botas de Ferro T2.0:
+/addcraft item_id:101 pelego:30 minerio:25 madeira:10
+
+Escudo de Ferro T2.0:
+/addcraft item_id:111 madeira:40 minerio:50 pelego:15
+
+
+════════════════════════════════════════════════════════
+            TIER 4-5 - RECEITAS AVANÇADAS
+════════════════════════════════════════════════════════
+
+--- ARMAS TIER 4-5 (Slot 4) ---
+Lâmina do Abismo T4.0:
+/addcraft item_id:121 minerio:120 madeira:80 pedra:60 fibra:40
+
+Punhais Sombrios T4.0:
+/addcraft item_id:131 minerio:110 madeira:70 pedra:50 fibra:50
+
+Martelo dos Titãs T4.0:
+/addcraft item_id:141 minerio:150 madeira:90 pedra:80
+
+Cetro Arcano T4.0:
+/addcraft item_id:151 madeira:100 fibra:90 minerio:60 pelego:30
+
+Arco Élfico T4.0:
+/addcraft item_id:161 madeira:110 fibra:90 pedra:40 pelego:30
+
+--- ARMADURAS TIER 4-5 ---
+Coroa do Abismo T4.0:
+/addcraft item_id:171 minerio:100 fibra:80 pelego:60 pedra:30
+
+Armadura das Sombras T4.0:
+/addcraft item_id:181 fibra:130 pelego:100 minerio:80 madeira:40
+
+Calças do Guardião T4.0:
+/addcraft item_id:191 fibra:100 pelego:80 minerio:60 madeira:30
+
+Botas Aladas T4.0:
+/addcraft item_id:201 pelego:80 fibra:70 minerio:50 madeira:30
+
+Escudo Encantado T4.0:
+/addcraft item_id:211 madeira:90 minerio:100 pelego:60 fibra:40
+
+
+════════════════════════════════════════════════════════
+            TIER 6-8 - RECEITAS LENDÁRIAS
+════════════════════════════════════════════════════════
+
+--- ARMAS TIER 6-8 (Slot 4) ---
+Devastadora do Infinito T6.0:
+/addcraft item_id:221 minerio:350 madeira:250 pedra:200 fibra:150
+
+Adagas da Eternidade T6.0:
+/addcraft item_id:236 minerio:320 madeira:230 pedra:180 fibra:170
+
+Mjolnir Sombrio T6.0:
+/addcraft item_id:251 minerio:400 madeira:280 pedra:250 pelego:100
+
+Cajado das Eras T6.0:
+/addcraft item_id:266 madeira:300 fibra:280 minerio:200 pelego:150
+
+Arco Divino T6.0:
+/addcraft item_id:281 madeira:320 fibra:270 pedra:150 pelego:140
+
+--- ARMADURAS TIER 6-8 ---
+Diadema do Cosmos T6.0:
+/addcraft item_id:296 minerio:300 fibra:250 pelego:200 pedra:120
+
+Peitoral do Titã T6.0:
+/addcraft item_id:311 fibra:380 pelego:320 minerio:280 madeira:150
+
+Calças Primordiais T6.0:
+/addcraft item_id:326 fibra:300 pelego:270 minerio:220 madeira:120
+
+Botas do Vento T6.0:
+/addcraft item_id:341 pelego:250 fibra:230 minerio:180 madeira:110
+
+Égide Celestial T6.0:
+/addcraft item_id:356 madeira:280 minerio:300 pelego:220 fibra:170
+
+
+════════════════════════════════════════════════════════
+                  GUIA DE USO RÁPIDO
+════════════════════════════════════════════════════════
+
+🚀 MÉTODO RÁPIDO (RECOMENDADO):
+1. Crie TODOS os itens com /genitem (copie e cole do topo do arquivo)
+2. Use /getitem para verificar o ID do PRIMEIRO tier de cada item
+3. Use /addcraft APENAS no primeiro tier (exemplo: Espada de Ferro T2.0)
+4. Quando perguntado, escolha "🔥 Criar Para Todos os Tiers"
+5. Pronto! Todas as receitas T2.0 até T3.4 serão criadas automaticamente
+
+📋 EXEMPLO PRÁTICO:
+Você criou "Espada de Ferro" de T2.0 até T3.4 (10 tiers)
+ID do T2.0 = 21
+
+Comando:
+/addcraft item_id:21 madeira:40 minerio:50 pedra:20
+
+Bot pergunta: "Criar para todos os 10 tiers?"
+Você clica: "🔥 Criar Para Todos os Tiers"
+
+Resultado:
+✅ T2.0: 40 madeira, 50 minério, 20 pedra
+✅ T2.1: 44 madeira, 55 minério, 22 pedra
+✅ T2.2: 48 madeira, 60 minério, 24 pedra
+... (até T3.4 automaticamente escalonado)
+
+⏱️ Economize tempo: 1 comando ao invés de 10!
+
+
+════════════════════════════════════════════════════════
+                BALANCEAMENTO DE RECURSOS
+════════════════════════════════════════════════════════
+
+📊 PROPORÇÕES POR TIPO DE ITEM:
+
+ARMAS (Mão Principal):
+- Minério: 40-50% (principal)
+- Madeira: 30-35%
+- Pedra/Fibra: 15-25%
+
+ARMADURAS PESADAS (Torso, Cabeça):
+- Fibra: 35-40% (principal)
+- Pelego: 30-35%
+- Minério: 20-25%
+
+ARMADURAS LEVES (Pernas, Pés):
+- Pelego: 35-40% (principal)
+- Fibra: 30-35%
+- Minério/Madeira: 15-20%
+
+ESCUDOS:
+- Madeira: 35-40%
+- Minério: 35-40%
+- Pelego/Fibra: 20-25%
+
+ACESSÓRIOS (Anéis):
+- Minério: 50-60% (principal)
+- Fibra: 20-30%
+
+
+════════════════════════════════════════════════════════
+                      NOTAS IMPORTANTES
+════════════════════════════════════════════════════════
+
+1. ⚠️ Os IDs acima são EXEMPLOS! Use /getitem para verificar os IDs reais
+
+2. 🪵 Recursos disponíveis:
+   • Madeira - Estruturas, arcos, cajados
+   • Pedra - Base, fortalecimento
+   • Minério - Armas, armaduras metálicas
+   • Fibra - Tecidos, roupas leves
+   • Pelego - Couro, proteção
+   • Cristal - Encantamentos e itens raros
+   • Ervas - Poções e consumíveis
+
+3. 🔢 Custos escalam automaticamente:
+   T1.0 → T2.0 = 2x mais caro
+   T1.0 → T3.0 = 3x mais caro
+   T1.0 → T8.0 = 8x mais caro
+
+4. 📦 Jogadores coletam recursos com /explore
+
+5. 🔨 Comandos de crafting:
+   • /craft - Interface interativa
+   • /recipes - Ver todas as receitas
+   • /myresources - Ver recursos disponíveis
+
+6. 🎯 DICA DE ADMIN: 
+   • Crie PRIMEIRO os recursos coletáveis (slot_id:9, is_collectible:true)
+   • Depois crie os itens T1.0 de cada tipo
+   • Por fim crie os T2.0, T4.0 e T6.0
+   • Isso facilita encontrar os IDs!
+
+7. ✨ NOVO: Confirmação antes de criar itens
+   • O comando /genitem agora mostra uma prévia do que será criado
+   • Confirme com ✅ ou cancele com ❌
+   • Útil para evitar criações acidentais
+
+8. 🌿 Recursos coletáveis:
+   • Use is_collectible:true ao criar recursos
+   • Recursos aparecem no comando /explore
+   • Slot ID 9 é reservado para recursos (não equipáveis)
+
+
+════════════════════════════════════════════════════════
+              EXEMPLO DE USO COM CONFIRMAÇÃO
+════════════════════════════════════════════════════════
+
+📋 EXEMPLO 1: Criar um recurso coletável
+Comando:
+/genitem nome:"Madeira" base_damage:0 base_defense:0 slot_id:9 start_tier:1 start_subtier:0 end_tier:1 end_subtier:0 is_collectible:true
+
+O bot mostrará:
+┌─────────────────────────────────────┐
+│ 📦 Confirmar Criação de Item        │
+├─────────────────────────────────────┤
+│ 📝 Nome: Madeira                    │
+│ ⚔️ Dano Base: 0                     │
+│ 🛡️ Defesa Base: 0                  │
+│ 🎰 Slot ID: 9                       │
+│ 📊 Tier Inicial: 1.0                │
+│ 📊 Tier Final: 1.0                  │
+│ 📦 Coletável: ✅ Sim                │
+│ 📈 Total: 1 itens serão criados     │
+├─────────────────────────────────────┤
+│    [✅ Confirmar]  [❌ Cancelar]    │
+└─────────────────────────────────────┘
+
+📋 EXEMPLO 2: Criar uma arma com múltiplos tiers
+Comando:
+/genitem nome:"Espada de Ferro" base_damage:10 slot_id:4 start_tier:2 start_subtier:0 end_tier:3 end_subtier:4
+
+O bot mostrará:
+┌─────────────────────────────────────┐
+│ 📦 Confirmar Criação de Item        │
+├─────────────────────────────────────┤
+│ 📝 Nome: Espada de Ferro            │
+│ ⚔️ Dano Base: 10                    │
+│ 🛡️ Defesa Base: 0                  │
+│ 🎰 Slot ID: 4 (Arma)                │
+│ 📊 Tier Inicial: 2.0                │
+│ 📊 Tier Final: 3.4                  │
+│ 📦 Coletável: ❌ Não                │
+│ 📈 Total: 10 itens serão criados    │
+│   (T2.0 até T3.4)                   │
+├─────────────────────────────────────┤
+│    [✅ Confirmar]  [❌ Cancelar]    │
+└─────────────────────────────────────┘
+
+
+════════════════════════════════════════════════════════
+                    FIM DO ARQUIVO
+════════════════════════════════════════════════════════

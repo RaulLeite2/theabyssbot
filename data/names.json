@@ -1,0 +1,21 @@
+{
+    "initials": ["Ai", "Et", "Al", "Jo", "Ka", "Lu", "Xe", "Ty"],
+    "first_parts": [
+        "Haven","Shadow","Iron","Storm","Frost","Moon","Flame","Ash","Dark","Sun",
+        "Silver","Crystal","Stone","Blood","Night","Fire","Sky","Wind","Star","Thorn",
+        "Ember","Rune","Vale","Dusk","Gale","Echo","Drake","Lark","Wolf","Blaze",
+        "Cinder","Raven","Lyric","Onyx","Talon","Sable","Orion","Zephyr","Iris","Nova",
+        "Axel","Nox","Vex","Luna","Aero","Ebon","Fable","Hollow","Mist","Rift",
+        "Shade","Quill","Fang","Pike","Briar","Hallow","Glen","Dane","Keene","Pierce",
+        "Ridge","Ulric","Voss","Wilder","Xyler"
+    ],
+    "last_parts": [
+        "Wren","Storm","Vale","Drake","Night","Ash","Moon","Stone","Ray","Fox",
+        "Blaze","Frost","Lark","Wolf","Shade","Crow","Dusk","Raven","Snow","Sky",
+        "Ember","Flint","Ashen","Hawk","Gale","Thorne","Quinn","Sable","Pike","Foxglove",
+        "Hallow","Griff","Orion","Lyric","Rune","Cinder","Ashcroft","Briar","Haven","Cliff",
+        "Dane","Everest","Fable","Glen","Hale","Ives","Jade","Keene","Lorne","Marsh",
+        "Noble","Onyx","Pierce","Quill","Ridge","Stone","Talon","Ulric","Voss","Wilder",
+        "Xyler","Yarrow","Zephyr","Crowe","Mist"
+    ]
+}

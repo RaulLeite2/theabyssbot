@@ -1,0 +1,410 @@
+{
+  "_comment": "NPCs únicos do The Abyss - Cada um com personalidade e estilo próprio",
+  "npcs": {
+    "gorak": {
+      "id": "gorak",
+      "name": "Gorak, o Ferreiro das Sombras",
+      "title": "Mestre Ferreiro de Hideout",
+      "race": "Anão Sombrio",
+      "personality": "grumpy_but_skilled",
+      "shop_type": "hideout_shop",
+      "location": "forge",
+      "description": "Um anão veterano com cicatrizes de batalha e mãos calejadas. Especialista em construções de hideout.",
+      "greeting": [
+        "HAHA! Uma ótima escolha, aventureiro! Forge bem! 🔨",
+        "Isso vai te servir bem nas batalhas! Volte sempre!",
+        "Minhas forjas nunca falham! Use com orgulho!",
+        "Que suas armas nunca percam o gume! ⚔️"
+      ],
+      "farewell": [
+        "Cuide bem dessa estrutura. Levei anos para dominar essa técnica.",
+        "Volte quando tiver mais ouro. Ou quando quebrar isso.",
+        "Que as chamas da forja te protejam, aventureiro."
+      ],
+      "reputation_perks": {
+        "500": "Desconto de 5% em construções",
+        "1000": "Acesso a estruturas raras",
+        "2500": "Desconto de 10% + Upgrade grátis 1x/semana",
+        "5000": "Gorak te ensina técnicas secretas de construção"
+      }
+    },
+    "lysandra": {
+      "id": "lysandra",
+      "name": "Lysandra Goldwhisper",
+      "title": "Mercadora Elite",
+      "race": "Elfa",
+      "personality": "charming_and_shrewd",
+      "shop_type": "general_shop",
+      "location": "market_square",
+      "description": "Uma elfa elegante com joias brilhantes e um sorriso calculista. Comerciante principal do hub.",
+      "greeting": [
+        "Prazer em fazer negócios com você! ✨",
+        "Obrigada pela preferência, aventureiro!",
+        "Excelente escolha! Volte sempre!",
+        "Que a sorte esteja com você nas suas jornadas!"
+      ],
+        "Bem-vindo, querido! Tenho exatamente o que você precisa... e pelo preço certo.",
+        "Ah, um cliente promissor! Entre, entre! Meus produtos são os melhores da região.",
+        "Olá, aventureiro! Hoje tenho uma oferta especial só para você~"
+      ],
+      "farewell": [
+        "Prazer em fazer negócios! Volte sempre, querido.",
+        "Ah, já vai? Bem, a porta está sempre aberta para bons clientes.",
+        "Até breve! E traga amigos... amigos com ouro, de preferência."
+      ],
+      "haggle_success": [
+        "Você dirige um bom negócio! Aceito sua oferta.",
+        "Mmm, você é esperto. Muito bem, é seu por esse preço.",
+        "Haha! Eu gosto de você. Fechado!"
+      ],
+      "haggle_fail": [
+        "Oh querido, isso não vai funcionar. Tenho despesas, sabe?",
+        "Que oferta... criativa. Mas não, obrigada.",
+        "Preciso ganhar a vida também, você sabe?"
+      ],
+      "special_items": ["merchant_guild_token", "ledger_of_trades"],
+      "reputation_perks": {
+        "500": "Acesso a ofertas diárias exclusivas",
+        "1000": "Desconto de 8% em todos os itens",
+        "2500": "Lysandra te avisa sobre itens raros no mercado",
+        "5000": "Parceria comercial: lucro de 5% em vendas no leilão"
+      }
+    },
+    "alchemist": {
+      "id": "npc_alchemist_01",
+      "name": "Professor Thaddeus Vex",
+      "title": "Alquimista Louco",
+      "race": "Humano",
+      "personality": "eccentric_genius",
+      "shop_type": "potions_consumables",
+      "location": "alchemy_lab",
+      "description": "Um homem de meia-idade com cabelos desgrenhados e manchas coloridas na roupa. Seus olhos têm um brilho meio insano.",
+      "greeting": [
+        "AH! Um espécime... digo, cliente! Perfeito timing, eu estava testando... quer experimentar?",
+        "Não! Não toque nada! ...Oh, é você. Bem-vindo ao meu laboratório.",
+        "*BOOM* Ops... Ignore aquela explosão. ENTRE, ENTRE! Tenho poções maravilhosas!"
+      ],
+      "farewell": [
+        "Cuidado com a dosagem! Ou não... para fins científicos...",
+        "Volte se não explodir! Quero dizer, QUANDO voltar!",
+        "Fascinante... Você sobreviveu à entrada. Impressionante."
+      ],
+      "haggle_success": [
+        "EXCELENTE! Menos ouro para mim significa mais fundos para experimentos!",
+        "Sim, sim, leve! Preciso de espaço para minha nova criação!",
+        "Hm? Ah, preço. Sim, tanto faz! ACEITO!"
+      ],
+      "haggle_fail": [
+        "Não! Essas poções custaram 3 explosões e 2 dedos! ...Metaforicamente.",
+        "Você não entende o valor da CIÊNCIA!",
+        "Impossível! Esses ingredientes são raríssimos!"
+      ],
+      "special_items": ["experimental_potion", "alchemist_secret_formula"],
+      "reputation_perks": {
+        "500": "Thaddeus te dá poções experimentais grátis (efeitos aleatórios)",
+        "1000": "Desconto de 15% em todas as poções",
+        "2500": "Acesso a poções proibidas e elixires raros",
+        "5000": "Thaddeus te ensina alquimia avançada: crafting de poções tier +1"
+      }
+    },
+    "enchanter": {
+      "id": "npc_enchanter_01",
+      "name": "Morgath, o Sussurrador de Runas",
+      "title": "Mestre Encantador",
+      "race": "Tiefling",
+      "personality": "mysterious_and_cryptic",
+      "shop_type": "enchantments_magic",
+      "location": "arcane_sanctum",
+      "description": "Uma figura envolta em túnicas escuras com runas brilhantes. Seus chifres emanam energia arcana.",
+      "greeting": [
+        "...As estrelas previam sua chegada. Entre, buscador.",
+        "O véu entre mundos se afina... Você traz perturbações interessantes.",
+        "Hmm... Sua aura está... diferente. O que você procura, mortal?"
+      ],
+      "farewell": [
+        "Que as runas te guiem através da escuridão.",
+        "O destino nos encontrará novamente... inevitavelmente.",
+        "...Interessante. Muito interessante. Até breve."
+      ],
+      "haggle_success": [
+        "As runas concordam com sua oferta. Que seja.",
+        "Hmm... O destino aceita esse preço.",
+        "Você negocia com sabedoria. Aceito."
+      ],
+      "haggle_fail": [
+        "As forças arcanas não aceitam essa oferta.",
+        "Impossível. O equilíbrio cósmico rejeita esse valor.",
+        "...Não."
+      ],
+      "special_items": ["rune_of_destiny", "arcane_crystal_shard"],
+      "reputation_perks": {
+        "500": "Morgath revela segredos arcanos: +5% poder mágico",
+        "1000": "Encantamentos com 20% de desconto",
+        "2500": "Acesso a encantamentos proibidos e runas antigas",
+        "5000": "Morgath te ensina um ritual: permanentemente +10 em um atributo"
+      }
+    },
+    "innkeeper": {
+      "id": "npc_innkeeper_01",
+      "name": "Martha 'Mãe Ursa' Ironheart",
+      "title": "Estalajadeira",
+      "race": "Humana",
+      "personality": "warm_and_motherly",
+      "shop_type": "inn_rest",
+      "location": "cozy_inn",
+      "description": "Uma mulher robusta com um avental manchado e sorriso caloroso. Cheira a pão fresco e especiarias.",
+      "greeting": [
+        "Bem-vindo, querido! Você parece exausto. Sente-se, vou buscar sopa!",
+        "Ah, meu filho! Entra logo, está frio lá fora!",
+        "OLÁ! Como está meu aventureiro favorito? Faminto, aposto!"
+      ],
+      "farewell": [
+        "Cuide-se lá fora, querido. E coma direito!",
+        "Volte sempre! Você sempre tem um prato quente esperando aqui!",
+        "Que os deuses te protejam, meu filho!"
+      ],
+      "haggle_success": [
+        "Ah, você está com pouco ouro? Não se preocupe, querido. Aceito isso.",
+        "Por você, faço um descontinho. Mas não conte para os outros!",
+        "Está bem, está bem! Você me lembra meu filho..."
+      ],
+      "haggle_fail": [
+        "Querido, eu tenho contas para pagar também...",
+        "Ah não, amor. Não posso ir mais baixo que isso.",
+        "Você me entende, né? Ingredientes estão caros..."
+      ],
+      "special_items": ["home_cooked_meal", "mothers_blessing"],
+      "reputation_perks": {
+        "500": "Descanso grátis 1x por dia + HP completo",
+        "1000": "Martha te dá comida grátis que buffa +20% XP por 1 hora",
+        "2500": "Quarto VIP permanente: bônus de descanso +50% XP",
+        "5000": "Martha te adota: Bênção Permanente +10% em todos atributos"
+      }
+    },
+    "shady_dealer": {
+      "id": "npc_dealer_01",
+      "name": "Raven 'Dedos Rápidos'",
+      "title": "Comerciante de Informações",
+      "race": "Halfling",
+      "personality": "shifty_and_cunning",
+      "shop_type": "black_market",
+      "location": "dark_alley",
+      "description": "Um halfling magro com um sorriso desdentado. Seus dedos não param de se mexer, e seus olhos observam tudo.",
+      "greeting": [
+        "Psst... Você. Sim, você. Procurando algo... especial?",
+        "Bem-vindo ao meu canto... Tenho mercadorias que você não vai encontrar em outro lugar.",
+        "*Olha em volta nervosamente* Rápido, o que você quer? Não temos muito tempo."
+      ],
+      "farewell": [
+        "Nunca me viu, certo? Certo. Até a próxima.",
+        "Prazer fazer negócios. Não mencione meu nome por aí...",
+        "Volte quando tiver ouro... e discrição."
+      ],
+      "haggle_success": [
+        "Hehe... Você é esperto. Gosto disso. Fechado.",
+        "Tá bom, tá bom! Você dirige um bom negócio.",
+        "...Você não é guarda disfarçado, né? Tá, aceito."
+      ],
+      "haggle_fail": [
+        "Ei, ei! Eu corro riscos aqui! Não posso ir mais baixo.",
+        "Você tá louco? Vou ser preso se vender por esse preço!",
+        "Não. Próximo cliente!"
+      ],
+      "special_items": ["stolen_artifact", "blackmarket_token", "mysterious_map"],
+      "reputation_perks": {
+        "500": "Raven te avisa sobre 'carregamentos especiais'",
+        "1000": "Acesso ao mercado negro: itens roubados/raros com 30% desconto",
+        "2500": "Raven te passa informações privilegiadas: localização de dungeons secretas",
+        "5000": "Parceiro do crime: Raven te dá 10% de todos os itens vendidos no mercado negro"
+      }
+    },
+    "brutus": {
+      "id": "brutus",
+      "name": "Brutus, o Mestre de Arena",
+      "title": "Campeão da Arena",
+      "race": "Meio-Orc",
+      "personality": "competitive_and_honorable",
+      "shop_type": "arena",
+      "location": "arena_entrance",
+      "description": "Um guerreiro massivo com cicatrizes de inúmeras batalhas. Seus olhos brilham com o fogo da competição.",
+      "greeting": [
+        "HAHAHAHA! Vejo fogo nos seus olhos! Quer testar sua força? 💪",
+        "Bem-vindo à arena, guerreiro! Aqui os fracos não sobrevivem!",
+        "Ah, você voltou! Pronto para mais glória?",
+        "Sangue, suor e VITÓRIA! É isso que oferecemos aqui!"
+      ],
+      "farewell": [
+        "Que sua próxima luta seja lendária!",
+        "Treine duro! Seus adversários não vão ter piedade!",
+        "HAHA! Você tem potencial! Volte mais forte!"
+      ],
+      "reputation_perks": {
+        "500": "Brutus te dá dicas de combate (+5% dano na arena)",
+        "1000": "Acesso a torneios especiais com grandes recompensas",
+        "2500": "Treinamento avançado: +10% dano e defesa na arena",
+        "5000": "Brutus te reconhece como Campeão: título especial e arena privada"
+      }
+    },
+    "elara": {
+      "id": "elara",
+      "name": "Elara Moonweaver",
+      "title": "Guardiã do Conhecimento",
+      "race": "Elfa Lunar",
+      "personality": "wise_and_mystical",
+      "shop_type": "exploration_guide",
+      "location": "library",
+      "description": "Uma elfa anciã com olhos que parecem conter galáxias. Mapas e grimórios antigos a cercam.",
+      "greeting": [
+        "Ah, um explorador curioso... Bem-vindo à biblioteca. 📚",
+        "Os segredos do abismo aguardam aqueles com coragem para buscá-los.",
+        "Vejo em você o espírito de um desbravador verdadeiro.",
+        "Cada mapa conta uma história... Qual deseja desvendar hoje?"
+      ],
+      "farewell": [
+        "Que a luz da lua ilumine seus caminhos, explorador.",
+        "Retorne com suas descobertas. Estarei aqui.",
+        "Vá com sabedoria, jovem aventureiro."
+      ],
+      "reputation_perks": {
+        "500": "Elara te dá mapas básicos de zonas próximas",
+        "1000": "Chance aumentada de encontrar segredos (+15% ao explorar)",
+        "2500": "Acesso a mapas de dungeons raras e portais secretos",
+        "5000": "Elara te ensina magia antiga: teleporte para qualquer hub"
+      }
+    },
+    "grimjaw": {
+      "id": "grimjaw",
+      "name": "Grimjaw, o Caçador",
+      "title": "Mestre Caçador de Monstros",
+      "race": "Humano Amaldiçoado",
+      "personality": "serious_and_tactical",
+      "shop_type": "combat_missions",
+      "location": "hunters_guild",
+      "description": "Um caçador experiente com olhar penetrante. Cicatrizes de garras cobrem seus braços.",
+      "greeting": [
+        "Hmm. Outro caçador... Espero que seja competente.",
+        "Os monstros não vão se caçar sozinhos. Tem coragem?",
+        "Bem-vindo. Tenho missões que separam os fracos dos fortes.",
+        "Cada criatura morta nos deixa mais seguros. Pronto para trabalhar?"
+      ],
+      "farewell": [
+        "Volte vivo. Bons caçadores são raros.",
+        "Que sua lâmina seja afiada e sua mira certeira.",
+        "Até a próxima caçada."
+      ],
+      "reputation_perks": {
+        "500": "Grimjaw te ensina técnicas: +10% dano contra monstros",
+        "1000": "Acesso a missões de caça com recompensas duplas",
+        "2500": "Grimjaw te dá equipamento lendário de caçador",
+        "5000": "Parceiro de caça: Grimjaw te acompanha em raids épicos"
+      }
+    },
+    "valencia": {
+      "id": "valencia",
+      "name": "Valencia Crystalheart",
+      "title": "Mestre Artesã",
+      "race": "Gnoma",
+      "personality": "energetic_and_creative",
+      "shop_type": "crafting_workshop",
+      "location": "workshop",
+      "description": "Uma gnoma pequena mas cheia de energia, coberta de pó de cristal e resíduos de forja.",
+      "greeting": [
+        "OH! Um artesão! Ou quer aprender a ser um? 🔧",
+        "BEM-VINDO! Estou trabalhando em algo INCRÍVEL!",
+        "Ah, você de novo! Trouxe recursos interessantes?",
+        "A arte da criação é sublime! Vamos fazer algo extraordinário!"
+      ],
+      "farewell": [
+        "Continue criando! A perfeição vem com prática!",
+        "Mal posso esperar para ver o que você vai fazer!",
+        "Volte quando tiver inspiração! Ou recursos! Ou ambos!"
+      ],
+      "reputation_perks": {
+        "500": "Valencia te ensina receitas raras",
+        "1000": "Chance de crafting perfeito: itens ganham +1 tier às vezes",
+        "2500": "Acesso ao workshop privado: craft itens lendários",
+        "5000": "Mestre Artesão: todos seus crafts têm qualidade superior"
+      }
+    },
+    "seraphine": {
+      "id": "seraphine",
+      "name": "Seraphine, a Curadora",
+      "title": "Alta Sacerdotisa",
+      "race": "Aasimar",
+      "personality": "gentle_and_caring",
+      "shop_type": "healing_and_buffs",
+      "location": "temple",
+      "description": "Uma figura angelical envolta em luz suave. Sua presença traz paz instantânea.",
+      "greeting": [
+        "Que a luz te abençoe, filho do abismo. 🕊️",
+        "Bem-vindo ao templo. Busca cura ou orientação?",
+        "A luz sempre guia aqueles que a buscam.",
+        "Suas feridas parecem profundas... Deixe-me ajudar."
+      ],
+      "farewell": [
+        "Vá em paz, que a luz te proteja.",
+        "Retorne sempre que precisar de cura.",
+        "Que suas batalhas sejam justas e sua vitória certa."
+      ],
+      "reputation_perks": {
+        "500": "Seraphine te dá bênçãos diárias (+10% HP)",
+        "1000": "Cura completa grátis 3x por dia",
+        "2500": "Buff permanente: regeneração de HP fora de combate",
+        "5000": "Milagre Divino: revive automaticamente 1x por dia ao morrer"
+      }
+    },
+    "traveling_merchant": {
+      "id": "npc_merchant_traveling",
+      "name": "Zephyr, o Mercador do Vento",
+      "title": "Comerciante Dimensional",
+      "race": "Genasi do Ar",
+      "personality": "ethereal_and_mysterious",
+      "shop_type": "rare_and_legendary",
+      "location": "random_hub",
+      "spawn_chance": 0.05,
+      "description": "Uma figura semi-translúcida que parece flutuar. Seus olhos brilham com segredos de mil mundos.",
+      "greeting": [
+        "Saúde, viajante. O vento me trouxe até aqui com tesouros de terras distantes.",
+        "Ah... Você tem o olhar de quem busca o extraordinário. Perfeito.",
+        "Bem-vindo! Minha loja existe apenas por um momento... escolha com sabedoria."
+      ],
+      "farewell": [
+        "Que os ventos te guiem, viajante. Nossos caminhos se cruzarão novamente...",
+        "Vou partir em breve... O vento me chama. Até nosso próximo encontro.",
+        "Fascinante. Até que os ventos nos tragam juntos novamente."
+      ],
+      "special_items": [
+        "dimensional_shard",
+        "wind_walker_boots",
+        "legendary_artifact",
+        "void_touched_weapon",
+        "ancient_relic"
+      ],
+      "reputation_perks": {
+        "1000": "Zephyr te avisa quando vai aparecer em um hub",
+        "2500": "Desconto de 25% em todos os itens lendários",
+        "5000": "Acesso a itens únicos de outras dimensões",
+        "10000": "Zephyr te dá um item lendário aleatório toda semana"
+      },
+      "spawn_message": "🌪️ **O vento traz um visitante raro!** Zephyr, o Mercador do Vento, apareceu no hub! Ele partirá em 30 minutos!",
+      "despawn_time_minutes": 30
+    }
+  },
+  "reputation_titles": {
+    "0": "Desconhecido",
+    "100": "Conhecido",
+    "250": "Amigo",
+    "500": "Aliado de Confiança",
+    "1000": "Parceiro Leal",
+    "2500": "Herói Local",
+    "5000": "Lenda Viva",
+    "10000": "Campeão Eterno"
+  },
+  "dialogue_moods": {
+    "happy": ["😊", "😄", "🌟"],
+    "neutral": ["😐", "🤔", "💼"],
+    "annoyed": ["😒", "💢", "🙄"],
+    "excited": ["🤩", "⚡", "🎉"],
+    "mysterious": ["🔮", "👁️", "✨"]
+  }
+}
