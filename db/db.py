@@ -20,24 +20,53 @@ class Database:
     # CONNECTION
     # =========================
     async def connect(self):
-        # Prioriza DATABASE_URL (Railway/produção)
-        if DATABASE_URL:
-            self.pool = await asyncpg.create_pool(
-                dsn=DATABASE_URL,
-                min_size=1,
-                max_size=10
-            )
-        else:
-            # Fallback para variáveis individuais (desenvolvimento local)
-            self.pool = await asyncpg.create_pool(
-                user=DB_USER,
-                password=DB_PASSWORD,
-                database=DB_NAME,
-                host=DB_HOST,
-                port=5432,
-                min_size=1,
-                max_size=10
-            )
+        import asyncio
+        max_retries = 5
+        retry_delay = 2  # segundos
+        
+        for attempt in range(1, max_retries + 1):
+            try:
+                # Prioriza DATABASE_URL (Railway/produção)
+                if DATABASE_URL:
+                    print(f"[Tentativa {attempt}/{max_retries}] Conectando via DATABASE_URL...")
+                    self.pool = await asyncpg.create_pool(
+                        dsn=DATABASE_URL,
+                        min_size=1,
+                        max_size=10
+                    )
+                    print(f"✅ Conexão estabelecida via DATABASE_URL!")
+                    return
+                else:
+                    # Fallback para variáveis individuais (desenvolvimento local)
+                    print(f"[Tentativa {attempt}/{max_retries}] Conectando via DB_USER, DB_HOST...")
+                    self.pool = await asyncpg.create_pool(
+                        user=DB_USER,
+                        password=DB_PASSWORD,
+                        database=DB_NAME,
+                        host=DB_HOST,
+                        port=5432,
+                        min_size=1,
+                        max_size=10
+                    )
+                    print(f"✅ Conexão estabelecida via variáveis individuais!")
+                    return
+                    
+            except Exception as e:
+                print(f"❌ Tentativa {attempt}/{max_retries} falhou: {e}")
+                if attempt < max_retries:
+                    print(f"⏳ Aguardando {retry_delay} segundos antes da próxima tentativa...")
+                    await asyncio.sleep(retry_delay)
+                else:
+                    print(f"❌ Falha após {max_retries} tentativas. Verifique:")
+                    if DATABASE_URL:
+                        print(f"   - DATABASE_URL está correta?")
+                        print(f"   - PostgreSQL está rodando no Railway?")
+                    else:
+                        print(f"   - DB_USER: {DB_USER}")
+                        print(f"   - DB_HOST: {DB_HOST}")
+                        print(f"   - DB_NAME: {DB_NAME}")
+                        print(f"   - PostgreSQL está instalado e rodando?")
+                    raise
 
     async def close(self):
         if self.pool:
