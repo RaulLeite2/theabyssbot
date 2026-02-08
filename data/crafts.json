@@ -1,0 +1,583 @@
+{
+  "schema": "the_abyss_crafting_v1",
+  "notes": [
+    "Arquivo de referencia para futuras automacoes de receitas.",
+    "Use item_name + tier/subtier para localizar o item real no banco.",
+    "Para tiers com auto_scale, crie a receita do primeiro tier e replique para os demais."
+  ],
+  "materials": [
+    "madeira",
+    "pedra",
+    "minerio",
+    "fibra",
+    "pelego",
+    "cristal",
+    "ervas"
+  ],
+  "recipes": [
+    {
+      "section": "T1",
+      "item_name": "Espada Enferrujada",
+      "slot_id": 4,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"madeira": 15, "minerio": 10, "pedra": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Adaga Quebrada",
+      "slot_id": 4,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"madeira": 15, "minerio": 10, "pedra": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Machado de Pedra",
+      "slot_id": 4,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"madeira": 20, "pedra": 15}
+    },
+    {
+      "section": "T1",
+      "item_name": "Cajado de Madeira",
+      "slot_id": 4,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"madeira": 25, "fibra": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Arco Rudimentar",
+      "slot_id": 4,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"madeira": 20, "fibra": 8, "pedra": 2}
+    },
+    {
+      "section": "T1",
+      "item_name": "Elmo Rachado",
+      "slot_id": 2,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"minerio": 8, "fibra": 10, "pelego": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Capuz de Pano",
+      "slot_id": 2,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"fibra": 15, "pelego": 8}
+    },
+    {
+      "section": "T1",
+      "item_name": "Capacete de Couro",
+      "slot_id": 2,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"pelego": 12, "fibra": 8, "madeira": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Armadura de Couro Gasto",
+      "slot_id": 5,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"pelego": 18, "fibra": 12}
+    },
+    {
+      "section": "T1",
+      "item_name": "Tunica Rasgada",
+      "slot_id": 5,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"fibra": 20, "madeira": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Peitoral de Ferro Velho",
+      "slot_id": 5,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"minerio": 15, "pelego": 10}
+    },
+    {
+      "section": "T1",
+      "item_name": "Calcas de Pano",
+      "slot_id": 3,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"fibra": 15, "pelego": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Calcas de Couro",
+      "slot_id": 3,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"pelego": 15, "fibra": 8}
+    },
+    {
+      "section": "T1",
+      "item_name": "Grevas Simples",
+      "slot_id": 3,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"minerio": 10, "fibra": 10}
+    },
+    {
+      "section": "T1",
+      "item_name": "Botas Desgastadas",
+      "slot_id": 8,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"pelego": 10, "madeira": 8}
+    },
+    {
+      "section": "T1",
+      "item_name": "Sandalias de Couro",
+      "slot_id": 8,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"pelego": 12, "fibra": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Sapatos Reforcados",
+      "slot_id": 8,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"pelego": 10, "minerio": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Anel do Iniciante",
+      "slot_id": 6,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"minerio": 12, "fibra": 5}
+    },
+    {
+      "section": "T1",
+      "item_name": "Escudo de Madeira",
+      "slot_id": 6,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"madeira": 15, "pelego": 8}
+    },
+    {
+      "section": "T1",
+      "item_name": "Bracelete Simples",
+      "slot_id": 6,
+      "tier_start": 1,
+      "tier_end": 1,
+      "subtier_start": 0,
+      "subtier_end": 0,
+      "ingredients": {"minerio": 10, "fibra": 5}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Espada de Ferro",
+      "slot_id": 4,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 40, "minerio": 50, "pedra": 20}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Adaga Afiada",
+      "slot_id": 4,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 35, "minerio": 45, "pedra": 20}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Machado de Batalha",
+      "slot_id": 4,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 50, "minerio": 40, "pedra": 25}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Cajado Mistico",
+      "slot_id": 4,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 60, "fibra": 30, "minerio": 10}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Arco Longo",
+      "slot_id": 4,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 50, "fibra": 35, "pedra": 10}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Elmo de Ferro",
+      "slot_id": 2,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 40, "fibra": 25, "pelego": 15}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Peitoral de Aco",
+      "slot_id": 5,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 60, "fibra": 35, "pelego": 25}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Calcas de Malha",
+      "slot_id": 3,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"fibra": 45, "pelego": 30, "minerio": 15}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Botas de Ferro",
+      "slot_id": 8,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"pelego": 30, "minerio": 25, "madeira": 10}
+    },
+    {
+      "section": "T2-3",
+      "item_name": "Escudo de Ferro",
+      "slot_id": 6,
+      "tier_start": 2,
+      "tier_end": 3,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 40, "minerio": 50, "pelego": 15}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Lamina do Abismo",
+      "slot_id": 4,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 120, "madeira": 80, "pedra": 60, "fibra": 40}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Punhais Sombrios",
+      "slot_id": 4,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 110, "madeira": 70, "pedra": 50, "fibra": 50}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Martelo dos Titas",
+      "slot_id": 4,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 150, "madeira": 90, "pedra": 80}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Cetro Arcano",
+      "slot_id": 4,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 100, "fibra": 90, "minerio": 60, "pelego": 30}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Arco Elfico",
+      "slot_id": 4,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 110, "fibra": 90, "pedra": 40, "pelego": 30}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Coroa do Abismo",
+      "slot_id": 2,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 100, "fibra": 80, "pelego": 60, "pedra": 30}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Armadura das Sombras",
+      "slot_id": 5,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"fibra": 130, "pelego": 100, "minerio": 80, "madeira": 40}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Calcas do Guardiao",
+      "slot_id": 3,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"fibra": 100, "pelego": 80, "minerio": 60, "madeira": 30}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Botas Aladas",
+      "slot_id": 8,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"pelego": 80, "fibra": 70, "minerio": 50, "madeira": 30}
+    },
+    {
+      "section": "T4-5",
+      "item_name": "Escudo Encantado",
+      "slot_id": 6,
+      "tier_start": 4,
+      "tier_end": 5,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 90, "minerio": 100, "pelego": 60, "fibra": 40}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Devastadora do Infinito",
+      "slot_id": 4,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 350, "madeira": 250, "pedra": 200, "fibra": 150}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Adagas da Eternidade",
+      "slot_id": 4,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 320, "madeira": 230, "pedra": 180, "fibra": 170}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Mjolnir Sombrio",
+      "slot_id": 4,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 400, "madeira": 280, "pedra": 250, "pelego": 100}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Cajado das Eras",
+      "slot_id": 4,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 300, "fibra": 280, "minerio": 200, "pelego": 150}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Arco Divino",
+      "slot_id": 4,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 320, "fibra": 270, "pedra": 150, "pelego": 140}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Diadema do Cosmos",
+      "slot_id": 2,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"minerio": 300, "fibra": 250, "pelego": 200, "pedra": 120}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Peitoral do Tita",
+      "slot_id": 5,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"fibra": 380, "pelego": 320, "minerio": 280, "madeira": 150}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Calcas Primordiais",
+      "slot_id": 3,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"fibra": 300, "pelego": 270, "minerio": 220, "madeira": 120}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Botas do Vento",
+      "slot_id": 8,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"pelego": 250, "fibra": 230, "minerio": 180, "madeira": 110}
+    },
+    {
+      "section": "T6-8",
+      "item_name": "Egide Celestial",
+      "slot_id": 6,
+      "tier_start": 6,
+      "tier_end": 8,
+      "subtier_start": 0,
+      "subtier_end": 4,
+      "auto_scale": true,
+      "ingredients": {"madeira": 280, "minerio": 300, "pelego": 220, "fibra": 170}
+    }
+  ],
+  "runes": [
+    {
+      "rune_name": "Runa de Subtier I",
+      "target_subtier": 1,
+      "max_subtier": 4,
+      "applies_to": "any_equipment",
+      "base_ingredients": {"cristal": 1, "ervas": 5, "fibra": 10},
+      "per_tier_multiplier": 1.4
+    },
+    {
+      "rune_name": "Runa de Subtier II",
+      "target_subtier": 2,
+      "max_subtier": 4,
+      "applies_to": "any_equipment",
+      "base_ingredients": {"cristal": 2, "ervas": 8, "fibra": 14},
+      "per_tier_multiplier": 1.5
+    },
+    {
+      "rune_name": "Runa de Subtier III",
+      "target_subtier": 3,
+      "max_subtier": 4,
+      "applies_to": "any_equipment",
+      "base_ingredients": {"cristal": 3, "ervas": 12, "fibra": 18},
+      "per_tier_multiplier": 1.6
+    },
+    {
+      "rune_name": "Runa de Subtier IV",
+      "target_subtier": 4,
+      "max_subtier": 4,
+      "applies_to": "any_equipment",
+      "base_ingredients": {"cristal": 4, "ervas": 16, "fibra": 24},
+      "per_tier_multiplier": 1.7
+    }
+  ]
+}
