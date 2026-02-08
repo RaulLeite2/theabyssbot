@@ -178,6 +178,112 @@ SELECT id, name, min_hideout_level, craft_time_seconds
 FROM hideout_recipes 
 ORDER BY min_hideout_level, id;
 
+-- =========================
+-- RECEITA LENDÁRIA: CRISTAL DE FUNDAÇÃO DO SANTUÁRIO
+-- Receita extremamente complexa para criar Hideout/Sanctuary
+-- =========================
+
+-- AVISO: Esta receita assume que os materiais foram criados via populate_sanctuary_crystal.sql
+-- Os IDs abaixo são EXEMPLOS e devem ser ajustados após inserir os items na tabela
+
+INSERT INTO hideout_recipes (
+    name, 
+    description, 
+    result_item_id, 
+    result_quantity, 
+    min_hideout_level, 
+    craft_time_seconds
+)
+VALUES (
+    'Cristal de Fundação do Santuário',
+    'Um ritual ancestral que funde fragmentos elementais, essências místicas e núcleos de poder supremo. Apenas os mais dedicados conseguem reunir todos os materiais necessários.',
+    NULL, -- ⚠️ SUBSTITUA com ID do 'Cristal de Fundação do Santuário' da tabela items
+    1,
+    5, -- Requer Hideout nível 5 (alto)
+    7200 -- 2 HORAS de craft time
+) ON CONFLICT DO NOTHING;
+
+-- MATERIAIS NECESSÁRIOS (ajuste os IDs após popular items)
+-- Use a query abaixo para encontrar os IDs corretos:
+-- SELECT id, name FROM items WHERE name IN (
+--     'Fragmento de Fogo Primordial', 'Fragmento de Gelo Eterno', 
+--     'Fragmento de Trovão Arcano', 'Fragmento de Terra Antiga',
+--     'Essência do Abismo', 'Essência Celestial', 'Essência do Vazio',
+--     'Núcleo de Mana Concentrado', 'Cristal de Energia Pura', 'Coração de Dragão Ancião',
+--     'Minério de Mythril', 'Minério de Adamantium', 'Minério de Orichalcum',
+--     'Runa de Proteção Lv5', 'Pergaminho de Selamento', 'Grimório Ancestral'
+-- );
+
+-- EXEMPLO de inserção (DESCOMENTE e ajuste IDs após popular items):
+/*
+INSERT INTO hideout_recipe_materials (recipe_id, item_id, quantity)
+VALUES 
+    -- Fragmentos Elementais (4 tipos, 100 de cada)
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Fragmento de Fogo Primordial'), 100),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Fragmento de Gelo Eterno'), 100),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Fragmento de Trovão Arcano'), 100),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Fragmento de Terra Antiga'), 100),
+    
+    -- Essências Místicas (3 tipos, quantidades variadas)
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Essência do Abismo'), 50),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Essência Celestial'), 50),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Essência do Vazio'), 10),
+    
+    -- Núcleos de Poder (3 tipos, sendo o último muito raro)
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Núcleo de Mana Concentrado'), 200),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Cristal de Energia Pura'), 75),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Coração de Dragão Ancião'), 1),
+    
+    -- Minérios Místicos (3 tipos, quantidades altas)
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Minério de Mythril'), 500),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Minério de Adamantium'), 300),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Minério de Orichalcum'), 150),
+    
+    -- Runas e Pergaminhos (3 tipos, incluindo item único)
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Runa de Proteção Lv5'), 50),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Pergaminho de Selamento'), 25),
+    ((SELECT id FROM hideout_recipes WHERE name = 'Cristal de Fundação do Santuário'), (SELECT id FROM items WHERE name = 'Grimório Ancestral'), 1)
+ON CONFLICT DO NOTHING;
+*/
+
+-- ========================================
+-- RESUMO DA RECEITA:
+-- ========================================
+-- Nome: Cristal de Fundação do Santuário
+-- Tempo de Craft: 2 HORAS
+-- Nível Mínimo de Hideout: 5
+-- 
+-- MATERIAIS (TOTAL: 15 tipos diferentes):
+-- 
+-- Fragmentos Elementais (400 total):
+--   - 100x Fragmento de Fogo Primordial
+--   - 100x Fragmento de Gelo Eterno
+--   - 100x Fragmento de Trovão Arcano
+--   - 100x Fragmento de Terra Antiga
+-- 
+-- Essências Místicas (110 total):
+--   - 50x Essência do Abismo
+--   - 50x Essência Celestial
+--   - 10x Essência do Vazio
+-- 
+-- Núcleos de Poder (276 total):
+--   - 200x Núcleo de Mana Concentrado
+--   - 75x Cristal de Energia Pura
+--   - 1x Coração de Dragão Ancião ⭐ RARO
+-- 
+-- Minérios Místicos (950 total):
+--   - 500x Minério de Mythril
+--   - 300x Minério de Adamantium
+--   - 150x Minério de Orichalcum
+-- 
+-- Runas e Pergaminhos (76 total):
+--   - 50x Runa de Proteção Lv5
+--   - 25x Pergaminho de Selamento
+--   - 1x Grimório Ancestral ⭐ ÚNICO
+-- 
+-- TOTAL DE MATERIAIS: 1,812 items de 15 tipos diferentes!
+-- ========================================
+
 -- Contar receitas
 SELECT COUNT(*) as total_recipes FROM hideout_recipes;
 
