@@ -396,6 +396,184 @@ class Wiki(commands.Cog):
 
         await interaction.response.send_message(embed=embed, ephemeral=True)
 
+    @wiki.command(name="guildas", description="Guia completo sobre o sistema de Guildas")
+    async def wiki_guildas(self, interaction: discord.Interaction):
+        """Explica o sistema de guildas do jogo"""
+        embed = discord.Embed(
+            title="📖 Wiki: Sistema de Guildas",
+            description="Tudo o que você precisa saber sobre guildas",
+            color=discord.Color.gold()
+        )
+        
+        # Criação
+        embed.add_field(
+            name="⚔️ Criação & Requisitos",
+            value="**Comando:** `/guild create <nome>`\n"
+                  "• Use esse comando em qualquer zona para criar sua guilda\n"
+                  "• Você se torna o líder automaticamente\n"
+                  "• O nome deve ser único no servidor\n"
+                  "• Custa 50.000 gold para criar",
+            inline=False
+        )
+        
+        # Membros
+        embed.add_field(
+            name="👥 Gerenciamento de Membros",
+            value="**Convidar:** `/guild invite @usuario`\n"
+                  "**Aceitar:** Clique no botão de aceitar convite\n"
+                  "**Remover:** `/guild remove @usuario` (apenas líder)\n"
+                  "**Sair:** `/guild leave`\n"
+                  "• Máximo **50 membros** por guilda",
+            inline=False
+        )
+        
+        # Informações
+        embed.add_field(
+            name="ℹ️ Informações & Status",
+            value="**Ver Info:** `/guild info`\n"
+                  "• Mostra nome, líder, membros, nível e gold\n"
+                  "• Mostra se tem Sanctuary criado\n"
+                  "• Lista todas as alianças que a guilda participa",
+            inline=False
+        )
+        
+        # Alianças
+        embed.add_field(
+            name="🤝 Alianças (Coalizões)",
+            value="**Criar:** `/alliance create <nome>` (líder de guilda)\n"
+                  "**Convidar:** `/alliance invite <guilda>` (líder de aliança)\n"
+                  "**Aceitar:** Como membro de guilda, aceite convite de aliança\n"
+                  "• Alianças compartilham Sanctuaries e recursos\n"
+                  "• Máximo **5 guildas** por aliança",
+            inline=False
+        )
+        
+        # Recursos
+        embed.add_field(
+            name="💰 Recursos & Economia",
+            value="• **Gold:** Ganhado por membros, compartilhado na guilda\n"
+                  "• **Exp:** Guilda sobe de nível com atividades\n"
+                  "• **Depósito:** `/guild deposit <amount>`\n"
+                  "• **Saque:** `/guild withdraw <amount>` (apenas líder)",
+            inline=False
+        )
+        
+        # Perks
+        embed.add_field(
+            name="🎁 Benefícios de Ser Membro",
+            value="✅ Compartilhamento de gold com aliados\n"
+                  "✅ Acesso a Sanctuaries da guilda/aliança\n"
+                  "✅ Bônus de exp em dungeons de guilda\n"
+                  "✅ Proteção em PvP zones (com aliados)",
+            inline=False
+        )
+        
+        embed.set_footer(text="Use /wiki sanctuaries para aprender sobre Sanctuaries!")
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
+    @wiki.command(name="sanctuaries", description="Guia completo sobre o sistema de Sanctuaries")
+    async def wiki_sanctuaries(self, interaction: discord.Interaction):
+        """Explica o sistema de Sanctuaries (bases de guilda)"""
+        embed = discord.Embed(
+            title="🏰 Wiki: Sistema de Sanctuaries",
+            description="Tudo sobre as bases de guilda",
+            color=discord.Color.dark_gold()
+        )
+        
+        # O que é
+        embed.add_field(
+            name="🏠 O que é um Sanctuary?",
+            value="Um Sanctuary é uma **base de guilda permanente** instalada em uma zona.\n"
+                  "• Cada guilda pode ter até **7 Sanctuaries**\n"
+                  "• Sanctuaries de guildas aliadas podem ser acessados\n"
+                  "• Permanece mesmo quando ninguém está na zona",
+            inline=False
+        )
+        
+        # Criação
+        embed.add_field(
+            name="⚒️ Criação",
+            value="**Comando:** `/sanc create` (apenas líder de guilda)\n"
+                  "• Você deve estar na zona desejada\n"
+                  "• Cria automaticamente um clone da zona para sua guilda\n"
+                  "• Limite: 5 Sanctuaries por zona de Zahuv (especiais)\n"
+                  "• Limite: 1 Sanctuary por zona normal",
+            inline=False
+        )
+        
+        # Energia & Durabilidade
+        embed.add_field(
+            name="⚡ Energia & 🛡️ Durabilidade",
+            value="**Energia:** Necessária para usar funcionalidades\n"
+                  "• Máximo: 100%\n"
+                  "• Regenera completamente a cada 1 hora\n"
+                  "• Comando: `/sanc recharge` (apenas líder)\n"
+                  "\n**Durabilidade:** Barra de resistência do Sanctuary\n"
+                  "• Máximo: 100\n"
+                  "• Degrada em 10 pontos a cada 30 min SEM energia\n"
+                  "• Com 0 durabilidade, o Sanctuary é destruído!",
+            inline=False
+        )
+        
+        # Comandos Básicos
+        embed.add_field(
+            name="📋 Comandos Básicos",
+            value="**Info:** `/sanc info` - Ver status do Sanctuary\n"
+                  "**Entrar:** `/sanc entrar` - Entra no Sanctuary\n"
+                  "**Sair:** `/sanc sair` - Sai do Sanctuary\n"
+                  "**List:** `/sanc list` - Lista todos os Sanctuaries\n"
+                  "**Zone:** `/sanc zone` - Info sobre zona do Sanctuary",
+            inline=False
+        )
+        
+        # Instalações
+        embed.add_field(
+            name="🏗️ Instalações",
+            value="**Estação de Crafting:**\n"
+                  "• Custo: 500k gold\n"
+                  "• Permite craftar itens especiais com receitas\n"
+                  "• Comando: `/sanc craft <recipe_id>`\n"
+                  "\n**Portal da Dungeon:**\n"
+                  "• Custo: 500k gold\n"
+                  "• Requer 5 pessoas com 1500+ de power total\n"
+                  "• Recompensa: Gold proporcional ao poder",
+            inline=False
+        )
+        
+        # Alianças
+        embed.add_field(
+            name="🤝 Sanctuaries em Alianças",
+            value="• Membros de guildas aliadas podem acessar\n"
+                  "• Usa comando `/sanc entrar` em qualquer zona\n"
+                  "• Compartilham instalações (crafting/dungeon)\n"
+                  "• Fortalecimento mútuo da coalizão",
+            inline=False
+        )
+        
+        # Administração
+        embed.add_field(
+            name="🔧 Administração",
+            value="**Upgrade:** `/sanc upgrade` - Aumenta nível (máx 20)\n"
+                  "**Delete:** `/sanc delete <sanctuary_id>` - Deleta\n"
+                  "**Cleanup:** `/sanc cleanup` - Remove órfãos\n"
+                  "**Facility:** `/sanc facility <tipo>` - Adiciona instalação",
+            inline=False
+        )
+        
+        # Dicas
+        embed.add_field(
+            name="💡 Dicas Importantes",
+            value="🔴 **Sempre mantenha energia acima de 0%!**\n"
+                  "🔴 **Durabilidade baixa = Risco de destruição!**\n"
+                  "✅ Sanctuaries juntos em alianças ficam mais fortes\n"
+                  "✅ Crafting de itens requer um bom preparo de materiais\n"
+                  "✅ Faça dungeons para ganhar recursos para upgrades",
+            inline=False
+        )
+        
+        embed.set_footer(text="Use /wiki guildas para aprender sobre o sistema de Guildas!")
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(Wiki(bot))
