@@ -85,15 +85,14 @@ class AdminRPG(commands.Cog):
         )
 
     # =========================
-    # GEN ITEM (1.0 → 8.4)
+    # GEN ITEM (Desacoplamento Total - v2.0)
     # =========================
-    @app_commands.command(name="genitem", description="Gera itens de 1.0 até 8.4")
+    @app_commands.command(name="genitem", description="Gera itens de 1.0 até 8.4 (busca atributos de Itens.enc)")
     async def genitem(
         self,
         interaction: discord.Interaction,
         nome: str,
-        base_damage: int = 0,
-        base_defense: int = 0,
+        item_identifier: str,
         slot_id: int = 4,
         start_tier: int = 1,
         start_subtier: int = 0,
@@ -101,21 +100,55 @@ class AdminRPG(commands.Cog):
         end_subtier: int = 4,
         is_collectible: bool = False
     ):
+        """
+        🔐 FILOSOFIA DE DESACOPLAMENTO TOTAL:
+        - Este comando apenas AUTORIZA a criação do item
+        - Os atributos reais (damage, defense, buffs) vêm do arquivo Itens.enc
+        - O usuário NUNCA define poder aqui, apenas nome, slot e tier
+        """
         if not self.is_admin(interaction):
             return await self.deny(interaction, "🚫 Nem tenta, isso aqui é coisa dos deuses.")
+        
+        # Importa o resolvedor de itens
+        from services.item_resolver import item_resolver
+        
+        # Verifica se o item existe no arquivo criptografado
+        item_attrs = item_resolver.resolve_item(slot_id, item_identifier)
+        
+        if item_attrs is None:
+            return await interaction.response.send_message(
+                f"❌ Item '{item_identifier}' não encontrado no slot {slot_id}\n"
+                f"💡 Verifique o arquivo Itens.enc e os identificadores disponíveis",
+                ephemeral=True
+            )
+        
+        # Extrai atributos base do arquivo
+        base_damage = item_attrs.get("base_damage", 0)
+        base_defense = item_attrs.get("base_defense", 0)
+        
+        # Informações sobre o item resolvido
+        has_buffs = len(item_attrs.get("buffs", [])) > 0
+        is_legendary = item_attrs.get("flags", {}).get("legendary", False)
 
         # Criar embed de confirmação
         embed = discord.Embed(
             title="📦 Confirmar Criação de Item",
-            color=discord.Color.blue()
+            color=discord.Color.gold() if is_legendary else discord.Color.blue()
         )
-        embed.add_field(name="📝 Nome", value=nome, inline=False)
-        embed.add_field(name="⚔️ Dano Base", value=base_damage, inline=True)
-        embed.add_field(name="🛡️ Defesa Base", value=base_defense, inline=True)
+        embed.add_field(name="📝 Nome Público", value=nome, inline=False)
+        embed.add_field(name="🔐 Identificador (Itens.enc)", value=f"`{item_identifier}`", inline=False)
+        embed.add_field(name="⚔️ Dano Base (Itens.enc)", value=base_damage, inline=True)
+        embed.add_field(name="🛡️ Defesa Base (Itens.enc)", value=base_defense, inline=True)
         embed.add_field(name="🎰 Slot ID", value=slot_id, inline=True)
         embed.add_field(name="📊 Tier Inicial", value=f"{start_tier}.{start_subtier}", inline=True)
         embed.add_field(name="📊 Tier Final", value=f"{end_tier}.{end_subtier}", inline=True)
         embed.add_field(name="📦 Coletável", value="✅ Sim" if is_collectible else "❌ Não", inline=True)
+        
+        if is_legendary:
+            embed.add_field(name="⭐ Lendário", value="✅ Sim", inline=True)
+        if has_buffs:
+            buffs_preview = ", ".join(b.get("type", "?") for b in item_attrs.get("buffs", [])[:3])
+            embed.add_field(name="✨ Buffs", value=buffs_preview, inline=True)
         
         total_items = 0
         for tier in range(start_tier, end_tier + 1):
@@ -124,6 +157,7 @@ class AdminRPG(commands.Cog):
             total_items += (sub_end - sub_start + 1)
         
         embed.add_field(name="📈 Total de Itens", value=f"{total_items} itens serão criados", inline=False)
+        embed.set_footer(text="🔒 Atributos resolvidos do arquivo criptografado Itens.enc")
         
         class ConfirmView(discord.ui.View):
             def __init__(self):
@@ -158,21 +192,6 @@ class AdminRPG(commands.Cog):
                 view=None
             )
 
-        if not is_collectible:
-            if slot_id == WEAPON_SLOT and base_damage <= 0:
-                return await interaction.edit_original_response(
-                    content="⚠️ Armas precisam de dano base.",
-                    embed=None,
-                    view=None
-                )
-
-            if slot_id != WEAPON_SLOT and base_defense <= 0:
-                return await interaction.edit_original_response(
-                    content="⚠️ Armaduras precisam de defesa base.",
-                    embed=None,
-                    view=None
-                )
-
         itens = []
 
         for tier in range(start_tier, end_tier + 1):
@@ -180,6 +199,7 @@ class AdminRPG(commands.Cog):
             sub_end = end_subtier if tier == end_tier else MAX_SUB
 
             for subtier in range(sub_start, sub_end + 1):
+                # DESACOPLAMENTO TOTAL: Valores vêm do arquivo, não de fórmulas!
                 if slot_id == WEAPON_SLOT:
                     value = base_damage + (tier - 1) * 5 + subtier * 2
                     damage, defense = value, 0
@@ -205,10 +225,12 @@ class AdminRPG(commands.Cog):
         embed = discord.Embed(
             title="📦 Itens Gerados" + (" 🌿 (Coletáveis)" if is_collectible else ""),
             description="\n".join(itens[:25]),
-            color=discord.Color.green()
+            color=discord.Color.gold() if is_legendary else discord.Color.green()
         )
         if len(itens) > 25:
             embed.set_footer(text=f"E mais {len(itens) - 25} itens...")
+        else:
+            embed.set_footer(text=f"🔐 Atributos de: {item_identifier}")
         
         await interaction.edit_original_response(content=None, embed=embed, view=None)
 

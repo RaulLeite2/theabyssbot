@@ -25,6 +25,15 @@ class MyBot(commands.Bot):
         # Conecta DB e prepara tabelas
         await self.db.connect()
         await self.pools()
+        
+        # Carrega sistema de itens criptografados
+        from services.item_resolver import item_resolver
+        print("🔐 Carregando sistema de itens...")
+        if item_resolver.load():
+            print("✅ Sistema de itens carregado com sucesso")
+        else:
+            print("⚠️ Falha ao carregar arquivo de itens (Itens.enc)")
+            print("   O bot continuará funcionando mas /genitem pode não funcionar corretamente")
 
         print("📦 Carregando cogs (rpg primeiro)...")
         failed_cogs = []

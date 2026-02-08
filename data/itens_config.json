@@ -1,0 +1,238 @@
+{
+  "1": {
+    "amuleto_comum": {
+      "base_damage": 0,
+      "base_defense": 150,
+      "scaling": {
+        "str": 0.5,
+        "dex": 0.5,
+        "int": 1.2
+      },
+      "buffs": [
+        {"type": "hp_regen", "value": 5}
+      ],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    },
+    "amuleto_lendario": {
+      "base_damage": 0,
+      "base_defense": 850,
+      "scaling": {
+        "str": 1.0,
+        "dex": 1.0,
+        "int": 2.5
+      },
+      "buffs": [
+        {"type": "hp_regen", "value": 25},
+        {"type": "crit_chance", "value": 15},
+        {"type": "exp_boost", "value": 20}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false
+      }
+    }
+  },
+  "2": {
+    "capacete_ferro": {
+      "base_damage": 0,
+      "base_defense": 200,
+      "scaling": {
+        "str": 0.8,
+        "dex": 0.3,
+        "int": 0.2
+      },
+      "buffs": [],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    },
+    "capacete_dragao": {
+      "base_damage": 0,
+      "base_defense": 1200,
+      "scaling": {
+        "str": 2.0,
+        "dex": 1.0,
+        "int": 0.5
+      },
+      "buffs": [
+        {"type": "fire_resistance", "value": 40},
+        {"type": "defense_boost", "value": 15}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false
+      }
+    }
+  },
+  "3": {
+    "calcas_couro": {
+      "base_damage": 0,
+      "base_defense": 180,
+      "scaling": {
+        "str": 0.6,
+        "dex": 0.9,
+        "int": 0.1
+      },
+      "buffs": [],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    }
+  },
+  "4": {
+    "espada_iniciante": {
+      "base_damage": 100,
+      "base_defense": 0,
+      "scaling": {
+        "str": 1.5,
+        "dex": 0.8,
+        "int": 0.0
+      },
+      "buffs": [],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    },
+    "lamina_abissal": {
+      "base_damage": 2500,
+      "base_defense": 0,
+      "scaling": {
+        "str": 3.5,
+        "dex": 2.0,
+        "int": 1.5
+      },
+      "buffs": [
+        {"type": "lifesteal", "value": 12},
+        {"type": "crit_damage", "value": 50},
+        {"type": "shadow_damage", "value": 30}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": true
+      }
+    }
+  },
+  "5": {
+    "armadura_bronze": {
+      "base_damage": 0,
+      "base_defense": 250,
+      "scaling": {
+        "str": 1.0,
+        "dex": 0.4,
+        "int": 0.2
+      },
+      "buffs": [],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    }
+  },
+  "6": {
+    "escudo_madeira": {
+      "base_damage": 0,
+      "base_defense": 150,
+      "scaling": {
+        "str": 0.8,
+        "dex": 0.3,
+        "int": 0.0
+      },
+      "buffs": [
+        {"type": "block_chance", "value": 10}
+      ],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    },
+    "escudo_celestial": {
+      "base_damage": 0,
+      "base_defense": 1800,
+      "scaling": {
+        "str": 2.5,
+        "dex": 1.0,
+        "int": 1.5
+      },
+      "buffs": [
+        {"type": "block_chance", "value": 35},
+        {"type": "holy_resistance", "value": 50},
+        {"type": "damage_reflection", "value": 20}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": true
+      }
+    }
+  },
+  "7": {
+    "capa_viajante": {
+      "base_damage": 0,
+      "base_defense": 120,
+      "scaling": {
+        "str": 0.3,
+        "dex": 1.2,
+        "int": 0.4
+      },
+      "buffs": [
+        {"type": "movement_speed", "value": 10}
+      ],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    }
+  },
+  "8": {
+    "botas_ferro": {
+      "base_damage": 0,
+      "base_defense": 140,
+      "scaling": {
+        "str": 0.7,
+        "dex": 0.9,
+        "int": 0.1
+      },
+      "buffs": [],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    }
+  },
+  "9": {
+    "anel_poder": {
+      "base_damage": 0,
+      "base_defense": 100,
+      "scaling": {
+        "str": 0.8,
+        "dex": 0.8,
+        "int": 0.8
+      },
+      "buffs": [
+        {"type": "all_stats", "value": 5}
+      ],
+      "flags": {
+        "legendary": false,
+        "tradeable": true,
+        "quest_item": false
+      }
+    }
+  }
+}
