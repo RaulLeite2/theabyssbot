@@ -251,7 +251,7 @@ class RPGBattle(commands.Cog):
     async def zoneinfo(self, interaction: discord.Interaction, zone_name: str):
         await interaction.response.defer()
         zone = await self.bot.db.fetchrow(
-            "SELECT zone_id, permanent, name FROM zone WHERE name = $1",
+            "SELECT zone_id, permanent, nome FROM zone WHERE nome = $1",
             zone_name
         )
         if not zone:
@@ -267,7 +267,7 @@ class RPGBattle(commands.Cog):
             zone["zone_id"]
         )
 
-        embed = discord.Embed(title=f"📍 Zona: {zone['name']}", color=discord.Color.blurple())
+        embed = discord.Embed(title=f"📍 Zona: {zone['nome']}", color=discord.Color.blurple())
         embed.add_field(name="🧑‍🤝‍🧑 Jogadores na zona", value=str(player_count), inline=True)
         embed.add_field(name="🔒 Permanente", value=str(bool(zone.get("permanent"))), inline=True)
 
