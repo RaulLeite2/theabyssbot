@@ -20,17 +20,26 @@ import os
 logger = logging.getLogger(__name__)
 
 # Chave de criptografia (deve estar em variável de ambiente em produção)
-# Para desenvolvimento, gera uma chave padrão fixa (para consistência entre execuções)
+# Para desenvolvimento, usa uma chave fixa (gerada com Fernet.generate_key())
 # Em produção, defina ITEMS_ENCRYPTION_KEY nas variáveis de ambiente
-def get_encryption_key():
-    """Obtém chave de criptografia da env var ou gera uma padrão"""
+DEFAULT_ENCRYPTION_KEY = b'Yhx0ZsIjHST3_nnWFWjLbdAx_Ou1yHXoCOELVHDx_PM='
+
+def get_encryption_key() -> bytes:
+    """Obtém chave de criptografia da env var ou usa a chave padrão"""
     env_key = os.getenv("ITEMS_ENCRYPTION_KEY")
     if env_key:
-        return env_key.encode()
+        # Tenta usar a chave da env var
+        try:
+            key_bytes = env_key.encode() if isinstance(env_key, str) else env_key
+            # Valida se é uma chave Fernet válida
+            Fernet(key_bytes)
+            return key_bytes
+        except Exception as e:
+            logger.warning(f"Chave de env var inválida, usando chave padrão: {e}")
+            return DEFAULT_ENCRYPTION_KEY
     
-    # Chave padrão para desenvolvimento (NÃO use em produção!)
-    # Esta é uma chave Fernet válida gerada com Fernet.generate_key()
-    return b'Zq4t7w!z%C*F-JaNdRgUkXp2s5v8y/B?E(H+MbQeThWm'
+    # Retorna chave padrão para desenvolvimento
+    return DEFAULT_ENCRYPTION_KEY
 
 
 class ItemIntegrityManager:
@@ -39,13 +48,9 @@ class ItemIntegrityManager:
     def __init__(self, file_path: str = "data/Itens.enc"):
         self.file_path = Path(file_path)
         
-        # Gera uma chave Fernet válida ou usa a da env var
+        # Usa chave consistente (nunca gera aleatória)
         key = get_encryption_key()
-        try:
-            self.fernet = Fernet(key)
-        except ValueError:
-            # Se a chave da env var for inválida, gera uma nova
-            self.fernet = Fernet(Fernet.generate_key())
+        self.fernet = Fernet(key)
         
         self._cache: Optional[Dict[str, Any]] = None
         
