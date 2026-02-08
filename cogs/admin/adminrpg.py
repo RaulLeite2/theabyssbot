@@ -373,7 +373,7 @@ class AdminRPG(commands.Cog):
     @app_commands.command(name="createzone", description="Cria uma zona customizada (ADM)")
     @app_commands.describe(
         nome="Nome da zona (deixe vazio para gerar aleatório)",
-        tier="Tier da zona (1-10)",
+        tier="Tier da zona (1-8) - Depth System",
         is_hub="Se é uma cidade/capital",
         is_hideout="Se é uma zona de hideout",
         permanent="Se a zona é permanente"
@@ -390,10 +390,10 @@ class AdminRPG(commands.Cog):
         if not self.is_admin(interaction):
             return await self.deny(interaction, "🚫 Não autorizado.")
 
-        # Valida tier
-        if tier < 1 or tier > 10:
+        # Valida tier (Depth System: 1-8)
+        if tier < 1 or tier > 8:
             return await interaction.response.send_message(
-                "❌ Tier deve estar entre 1 e 10.",
+                "❌ Tier deve estar entre 1 e 8 (Depth System).",
                 ephemeral=True
             )
 

@@ -52,12 +52,12 @@ class Zahuv(commands.Cog):
                 # Create normal zones (2 names) up to 15
                 if count < 15:
                     name = await self._generate_zone_name(is_hideout=False)
-                    # Tier aleatório com variação: pode ser de 1 a 10, com chance de ser maior
-                    # Base tier 1-5, mas pode ter "spike" para tiers mais altos
-                    base_tier = random.randint(1, 5)
-                    # 20% de chance de ser um tier superior (6-10)
+                    # Tier aleatório com variação: pode ser de 1 a 8, com chance de ser maior
+                    # Base tier 1-4, mas pode ter "spike" para tiers mais altos
+                    base_tier = random.randint(1, 4)
+                    # 20% de chance de ser um tier superior (5-8)
                     if random.random() < 0.20:
-                        tier = random.randint(6, 10)
+                        tier = random.randint(5, 8)
                     else:
                         tier = base_tier
                     
@@ -77,10 +77,10 @@ class Zahuv(commands.Cog):
                 if ho_count < 10:
                     name = await self._generate_zone_name(is_hideout=True)
                     # HO zones também têm tier aleatório com possibilidade de tier maior
-                    base_tier = random.randint(1, 5)
+                    base_tier = random.randint(1, 4)
                     # 30% de chance de ser tier superior para zonas de HO
                     if random.random() < 0.30:
-                        tier = random.randint(6, 10)
+                        tier = random.randint(5, 8)
                     else:
                         tier = base_tier
                     

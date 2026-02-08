@@ -173,20 +173,20 @@ class NPCSystem(commands.Cog):
     
     async def generate_merchant_inventory(self, spawn_id: int):
         """Gera inventário raro para o Mercador Viajante"""
-        # Busca itens de tiers altos
+        # Busca itens de depth alto (6+) com qualidade rara ou superior
         legendary_items = await self.bot.db.fetch(
             """
-            SELECT id, tier 
+            SELECT id, depth_new, quality_new
             FROM items 
-            WHERE tier >= 6 AND is_collectible = FALSE
+            WHERE depth_new >= 6 AND is_collectible = FALSE
             ORDER BY RANDOM()
             LIMIT 10
             """
         )
         
         for item in legendary_items:
-            # Preços altíssimos para itens lendários
-            base_price = item['tier'] * 50000
+            # Preços altíssimos para itens lendários baseado em depth
+            base_price = item['depth_new'] * 50000
             price = base_price + random.randint(-10000, 50000)
             
             await self.bot.db.execute(

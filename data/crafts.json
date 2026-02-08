@@ -1,9 +1,10 @@
 {
-  "schema": "the_abyss_crafting_v1",
+  "schema": "the_abyss_crafting_v2_depth_system",
   "notes": [
     "Arquivo de referencia para futuras automacoes de receitas.",
-    "Use item_name + tier/subtier para localizar o item real no banco.",
-    "Para tiers com auto_scale, crie a receita do primeiro tier e replique para os demais."
+    "DEPTH SYSTEM: Use item_name + depth_new/quality_new para localizar o item real no banco.",
+    "depth_new: 1-8 (profundidade), quality_new: COMMON/UNCOMMON/RARE/EPIC/LEGENDARY/MYTHIC",
+    "Para depths com auto_scale, crie a receita do primeiro depth e replique para os demais."
   ],
   "materials": [
     "madeira",
@@ -14,6 +15,7 @@
     "cristal",
     "ervas"
   ],
+  
   "recipes": [
     {
       "section": "T1",

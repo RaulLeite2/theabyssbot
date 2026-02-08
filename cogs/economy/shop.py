@@ -199,7 +199,7 @@ class HoShopView(ui.View):
             )
 
         item = await self.bot.db.fetchrow(
-            "SELECT id, name, tier FROM items WHERE id = $1",
+            "SELECT id, name, depth_new, quality_new FROM items WHERE id = $1",
             item_id
         )
         if not item:
@@ -286,9 +286,9 @@ class Shop(commands.Cog):
 
         items = await self.bot.db.fetch(
             """
-            SELECT id, tier, subtier
+            SELECT id, depth_new, quality_new
             FROM items
-            WHERE tier <= 5
+            WHERE depth_new <= 5
             ORDER BY RANDOM()
             LIMIT 5
             """
@@ -296,8 +296,20 @@ class Shop(commands.Cog):
 
         expires = datetime.datetime.utcnow() + datetime.timedelta(hours=1)
 
+        # Qualidade multiplica o preço base
+        quality_multipliers = {
+            "COMMON": 1.0,
+            "UNCOMMON": 1.3,
+            "RARE": 1.7,
+            "EPIC": 2.2,
+            "LEGENDARY": 3.0,
+            "MYTHIC": 4.0
+        }
+
         for item in items:
-            price = (item["tier"] * 1000) + (item["subtier"] * 500)
+            base_price = item["depth_new"] * 1000
+            quality_mult = quality_multipliers.get(item["quality_new"], 1.0)
+            price = int(base_price * quality_mult)
 
             await self.bot.db.execute(
                 """

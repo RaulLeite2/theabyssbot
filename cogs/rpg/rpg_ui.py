@@ -321,16 +321,16 @@ class BattleView(ui.View):
             await interaction.followup.send("🎁 Selecione como deseja recolher o saque:", view=loot_view, ephemeral=True)
     
     async def _generate_worldboss_loot(self, zone_tier: int) -> list:
-        """Generate loot based on zone tier (e.g., T8 zone drops up to T8.4 items)"""
+        """Generate loot based on zone tier (e.g., Depth 8 zone drops up to Depth 8 items with varied quality)"""
         try:
             # Number of items to drop (2-4 for worldboss)
             num_items = random.randint(2, 4)
             
-            # Get random items up to zone_tier with subtier up to 4
+            # Get random items up to zone_tier (using depth_new system)
             items = await self.cog.bot.db.fetch(
                 """
                 SELECT id FROM items
-                WHERE tier <= $1 AND subtier <= 4
+                WHERE depth_new <= $1
                 ORDER BY RANDOM()
                 LIMIT $2
                 """,
