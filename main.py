@@ -10,6 +10,7 @@ import sys
 import asyncio
 from pathlib import Path
 from db.db import Database
+from utils.clean_logger import setup_clean_logging, print_startup_header, print_startup_footer
 
 load_dotenv()
 TOKEN = os.getenv("DISCORD_TOKEN")
@@ -17,10 +18,8 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 intents = discord.Intents.default()
 intents.message_content = True
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="[%(asctime)s] [%(levelname)s] %(name)s: %(message)s",
-)
+# Configura logging limpo e bonito
+setup_clean_logging(level=logging.INFO)
 logger = logging.getLogger("theabyssbot")
 
 
@@ -73,7 +72,8 @@ class MyBot(commands.Bot):
         await self.db.file_execute("db/schema.sql")
 
     async def setup_hook(self):
-        logger.info("Pre-start: setup_hook iniciando")
+        print_startup_header()
+        logger.info("▶ Starting initialization sequence")
 
         loop = None
         try:
@@ -94,24 +94,33 @@ class MyBot(commands.Bot):
 
         try:
             await self.db.connect()
-            logger.info("Database conectado")
+            logger.info("✔ Database connection established")
             await self.pools()
-            logger.info("Database schema ok")
+            logger.info("✔ Database schema verified")
         except Exception:
-            logger.exception("Erro ao conectar ou preparar DB")
+            logger.exception("✗ Failed to connect to database")
+
+        # Executa migrations automáticas
+        from db.migration_runner import run_migrations
+        try:
+            migration_success = await run_migrations(self.db)
+            if not migration_success:
+                logger.warning("⚠ Algumas migrations falharam - bot pode ter problemas")
+        except Exception as e:
+            logger.error(f"✗ Erro ao executar migrations: {e}")
 
         load_crafts_file()
 
         # Carrega sistema de itens criptografados
         from services.item_resolver import item_resolver
-        logger.info("Carregando sistema de itens")
+        logger.info("⏳ Loading item system...")
         if item_resolver.load():
-            logger.info("Sistema de itens carregado")
+            logger.info("✔ Item system loaded")
         else:
-            logger.warning("Falha ao carregar arquivo de itens (Itens.enc)")
-            logger.warning("Bot continua, mas /genitem pode falhar")
+            logger.warning("⚠ Failed to load items file (Itens.enc)")
+            logger.warning("⚠ Bot will continue, but /genitem may fail")
 
-        logger.info("Carregando cogs (rpg primeiro)")
+        logger.info("▶ Loading cogs (rpg priority)...")
         failed_cogs = []
 
         # Buscar todos os arquivos .py em cogs/ e subpastas
@@ -137,14 +146,14 @@ class MyBot(commands.Bot):
         for file_name, cog_name in ordered:
             try:
                 await self.load_extension(cog_name)
-                logger.info("Cog carregado: %s", cog_name)
+                logger.info("  ✓ Cog carregado: %s", cog_name)
             except Exception:
                 failed_cogs.append(cog_name)
-                logger.exception("Falha ao carregar cog %s", cog_name)
+                logger.exception("  ✗ Falha ao carregar cog %s", cog_name)
 
         # Sincroniza slash commands uma unica vez
         try:
-            logger.debug("Comandos registrados (preview)")
+            logger.debug("▶ Comandos registrados (preview)")
 
             def dump_command(cmd, indent=0, idx=0):
                 t = getattr(cmd, "type", None)
@@ -173,19 +182,21 @@ class MyBot(commands.Bot):
                 dump_command(c, 0, i)
 
             await self.tree.sync()
-            logger.info("Slash commands sincronizados")
+            logger.info("✓ Slash commands sincronizados")
         except Exception:
-            logger.exception("Falha ao sincronizar slash commands")
+            logger.exception("✗ Falha ao sincronizar slash commands")
 
         if failed_cogs:
-            logger.warning("Alguns cogs nao foram carregados: %s", failed_cogs)
+            logger.warning("⚠ Some cogs failed to load: %s", failed_cogs)
         else:
-            logger.info("Todos os cogs carregados")
+            logger.info("✔ All cogs loaded successfully")
 
 bot = MyBot()
 
 @bot.event
 async def on_ready():
-    logger.info("Conectado como %s", bot.user)
+    print_startup_footer()
+    logger.info("✔ Connected as %s", bot.user)
+    logger.info("✔ Bot is ready to accept commands")
 
 bot.run(TOKEN)
