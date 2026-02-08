@@ -1,0 +1,283 @@
+{
+  "admin_tier": {
+    "espada_do_desenvolvedor": {
+      "slot_id": 6,
+      "base_damage": 100000,
+      "base_defense": 50000,
+      "scaling": {
+        "str": 1000.0,
+        "dex": 1000.0,
+        "int": 1000.0
+      },
+      "buffs": [
+        {"type": "crit_chance", "value": 100},
+        {"type": "crit_damage", "value": 500},
+        {"type": "lifesteal", "value": 50},
+        {"type": "exp_boost", "value": 1000},
+        {"type": "gold_boost", "value": 1000}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "A lendária espada dos criadores. Poder absoluto concentrado em uma lâmina."
+    },
+    "armadura_do_admin": {
+      "slot_id": 4,
+      "base_damage": 5000,
+      "base_defense": 200000,
+      "scaling": {
+        "str": 500.0,
+        "dex": 500.0,
+        "int": 500.0
+      },
+      "buffs": [
+        {"type": "damage_reduction", "value": 90},
+        {"type": "hp_regen", "value": 5000},
+        {"type": "mana_regen", "value": 5000},
+        {"type": "hp_boost", "value": 100000},
+        {"type": "reflect_damage", "value": 50}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Armadura forjada nas chamas do código. Invulnerabilidade em forma tangível."
+    },
+    "elmo_omnisciente": {
+      "slot_id": 2,
+      "base_damage": 10000,
+      "base_defense": 150000,
+      "scaling": {
+        "str": 300.0,
+        "dex": 300.0,
+        "int": 1500.0
+      },
+      "buffs": [
+        {"type": "int_boost", "value": 5000},
+        {"type": "mana_boost", "value": 50000},
+        {"type": "mana_regen", "value": 2000},
+        {"type": "spell_power", "value": 500},
+        {"type": "cooldown_reduction", "value": 50}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Elmo que concede conhecimento de todos os bugs e features do sistema."
+    },
+    "calcas_do_debugger": {
+      "slot_id": 3,
+      "base_damage": 8000,
+      "base_defense": 120000,
+      "scaling": {
+        "str": 400.0,
+        "dex": 1200.0,
+        "int": 400.0
+      },
+      "buffs": [
+        {"type": "dex_boost", "value": 5000},
+        {"type": "dodge_chance", "value": 75},
+        {"type": "movement_speed", "value": 500},
+        {"type": "attack_speed", "value": 300},
+        {"type": "evasion", "value": 50}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Calças que permitem esquivar de qualquer erro de runtime."
+    },
+    "botas_do_hotfix": {
+      "slot_id": 5,
+      "base_damage": 15000,
+      "base_defense": 80000,
+      "scaling": {
+        "str": 600.0,
+        "dex": 800.0,
+        "int": 600.0
+      },
+      "buffs": [
+        {"type": "movement_speed", "value": 1000},
+        {"type": "str_boost", "value": 3000},
+        {"type": "dex_boost", "value": 3000},
+        {"type": "kick_damage", "value": 50000},
+        {"type": "stamina_boost", "value": 10000}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Botas que aplicam correções instantâneas em qualquer situação crítica."
+    },
+    "amuleto_do_sysadmin": {
+      "slot_id": 1,
+      "base_damage": 50000,
+      "base_defense": 50000,
+      "scaling": {
+        "str": 1000.0,
+        "dex": 1000.0,
+        "int": 1000.0
+      },
+      "buffs": [
+        {"type": "all_stats", "value": 10000},
+        {"type": "hp_boost", "value": 500000},
+        {"type": "mana_boost", "value": 500000},
+        {"type": "hp_regen", "value": 10000},
+        {"type": "mana_regen", "value": 10000},
+        {"type": "exp_boost", "value": 10000},
+        {"type": "gold_boost", "value": 10000},
+        {"type": "luck", "value": 1000}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Amuleto que concede acesso root ao próprio universo do jogo."
+    },
+    "anel_do_commit": {
+      "slot_id": 7,
+      "base_damage": 25000,
+      "base_defense": 25000,
+      "scaling": {
+        "str": 500.0,
+        "dex": 500.0,
+        "int": 500.0
+      },
+      "buffs": [
+        {"type": "crit_chance", "value": 100},
+        {"type": "crit_damage", "value": 1000},
+        {"type": "lifesteal", "value": 100},
+        {"type": "spell_vamp", "value": 100},
+        {"type": "penetration", "value": 100}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Anel que faz commit direto na produção sem code review. Poder máximo, sem recuo."
+    },
+    "escudo_do_rollback": {
+      "slot_id": 8,
+      "base_damage": 0,
+      "base_defense": 500000,
+      "scaling": {
+        "str": 1000.0,
+        "dex": 200.0,
+        "int": 200.0
+      },
+      "buffs": [
+        {"type": "damage_reduction", "value": 99},
+        {"type": "block_chance", "value": 90},
+        {"type": "reflect_damage", "value": 100},
+        {"type": "hp_regen", "value": 20000},
+        {"type": "revive_chance", "value": 100}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Escudo capaz de desfazer qualquer ação hostil. Ctrl+Z físico perfeito."
+    },
+    "cajado_do_refactor": {
+      "slot_id": 6,
+      "base_damage": 250000,
+      "base_defense": 10000,
+      "scaling": {
+        "str": 100.0,
+        "dex": 200.0,
+        "int": 5000.0
+      },
+      "buffs": [
+        {"type": "spell_power", "value": 2000},
+        {"type": "int_boost", "value": 15000},
+        {"type": "mana_boost", "value": 1000000},
+        {"type": "mana_regen", "value": 50000},
+        {"type": "cooldown_reduction", "value": 90},
+        {"type": "aoe_radius", "value": 500}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true
+      },
+      "description": "Cajado que refatora a realidade ao seu redor. Caos reorganizado em harmonia."
+    },
+    "pocao_de_godmode": {
+      "slot_id": 0,
+      "base_damage": 0,
+      "base_defense": 0,
+      "scaling": {},
+      "buffs": [
+        {"type": "instant_heal", "value": 999999999},
+        {"type": "mana_restore", "value": 999999999},
+        {"type": "invulnerability", "value": 3600},
+        {"type": "all_stats_temp", "value": 100000, "duration": 3600}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true,
+        "consumable": true
+      },
+      "description": "Poção que concede literalmente poder divino. Use com responsabilidade... ou não."
+    },
+    "kit_de_emergencia": {
+      "slot_id": 0,
+      "base_damage": 0,
+      "base_defense": 0,
+      "scaling": {},
+      "buffs": [
+        {"type": "instant_heal", "value": 10000000},
+        {"type": "mana_restore", "value": 10000000},
+        {"type": "cleanse_debuffs", "value": 100},
+        {"type": "temp_shield", "value": 1000000}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true,
+        "consumable": true
+      },
+      "description": "Kit de emergência para quando tudo está pegando fogo. Literalmente salva vidas."
+    },
+    "pergaminho_do_fix": {
+      "slot_id": 0,
+      "base_damage": 0,
+      "base_defense": 0,
+      "scaling": {},
+      "buffs": [
+        {"type": "resurrect_self", "value": 100},
+        {"type": "full_restore", "value": 100},
+        {"type": "temp_god_mode", "value": 60}
+      ],
+      "flags": {
+        "legendary": true,
+        "tradeable": false,
+        "quest_item": false,
+        "admin_only": true,
+        "consumable": true
+      },
+      "description": "Pergaminho que conserta literalmente qualquer problema. Até morte."
+    }
+  }
+}

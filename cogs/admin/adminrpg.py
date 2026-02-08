@@ -996,7 +996,152 @@ class AdminRPG(commands.Cog):
         
         await interaction.followup.send(embed=embed, ephemeral=True)
 
+    @app_commands.command(name="giveadminitem", description="Dá um item de admin (stats absurdas)")
+    @app_commands.choices(item=[
+        app_commands.Choice(name="⚔️ Espada do Desenvolvedor (100k DMG)", value="espada_do_desenvolvedor"),
+        app_commands.Choice(name="🛡️ Armadura do Admin (200k DEF)", value="armadura_do_admin"),
+        app_commands.Choice(name="👑 Elmo Omnisciente (150k DEF)", value="elmo_omnisciente"),
+        app_commands.Choice(name="👖 Calças do Debugger (120k DEF)", value="calcas_do_debugger"),
+        app_commands.Choice(name="👢 Botas do Hotfix (80k DEF)", value="botas_do_hotfix"),
+        app_commands.Choice(name="📿 Amuleto do Sysadmin (50k DMG/DEF)", value="amuleto_do_sysadmin"),
+        app_commands.Choice(name="💍 Anel do Commit (25k DMG/DEF)", value="anel_do_commit"),
+        app_commands.Choice(name="🛡️ Escudo do Rollback (500k DEF)", value="escudo_do_rollback"),
+        app_commands.Choice(name="🪄 Cajado do Refactor (250k DMG)", value="cajado_do_refactor"),
+        app_commands.Choice(name="🧪 Poção de Godmode", value="pocao_de_godmode"),
+        app_commands.Choice(name="🩹 Kit de Emergência", value="kit_de_emergencia"),
+        app_commands.Choice(name="📜 Pergaminho do Fix", value="pergaminho_do_fix"),
+    ])
+    async def giveadminitem(
+        self, 
+        interaction: discord.Interaction, 
+        item: str,
+        user: discord.Member = None,
+        quantity: int = 1
+    ):
+        """Dá um item de admin para um jogador"""
+        if interaction.user.id != MY_ID:
+            return await interaction.response.send_message("❌ Apenas o desenvolvedor pode usar este comando.", ephemeral=True)
+        
+        target = user or interaction.user
+        
+        # Buscar item de admin no banco
+        item_data = await self.bot.db.fetchrow(
+            "SELECT id, name, base_damage, base_defense, depth_new, quality_new FROM items WHERE name=$1",
+            item
+        )
+        
+        if not item_data:
+            return await interaction.response.send_message(
+                f"⚠️ Item '{item}' não encontrado no banco!\nExecute primeiro: `psql $DATABASE_URL < db/seeds/populate_admin_items.sql`",
+                ephemeral=True
+            )
+        
+        # Adicionar ao inventário
+        await self.bot.db.execute(
+            """
+            INSERT INTO inventory (user_id, item_id, quantity)
+            VALUES ($1, $2, $3)
+            ON CONFLICT (user_id, item_id)
+            DO UPDATE SET quantity = inventory.quantity + $3
+            """,
+            target.id, item_data["id"], quantity
+        )
+        
+        display_name = item.replace("_", " ").title()
+        await interaction.response.send_message(
+            f"✨ **{display_name}** x{quantity} dado para {target.mention}\n"
+            f"⚔️ DMG: `{item_data['base_damage']:,}` | 🛡️ DEF: `{item_data['base_defense']:,}`\n"
+            f"🏅 Qualidade: **{item_data['quality_new']}** (Depth {item_data['depth_new']})",
+            ephemeral=True
+        )
+
+    @app_commands.command(name="giveadminkit", description="Dá um kit completo de itens de admin")
+    async def giveadminkit(
+        self, 
+        interaction: discord.Interaction, 
+        user: discord.Member = None
+    ):
+        """Dá um set completo de equipamento admin para um jogador"""
+        if interaction.user.id != MY_ID:
+            return await interaction.response.send_message("❌ Apenas o desenvolvedor pode usar este comando.", ephemeral=True)
+        
+        target = user or interaction.user
+        await interaction.response.defer(ephemeral=True)
+        
+        # Lista de itens do kit completo
+        admin_kit = [
+            "espada_do_desenvolvedor",  # Weapon
+            "armadura_do_admin",        # Chest
+            "elmo_omnisciente",         # Head
+            "calcas_do_debugger",       # Legs
+            "botas_do_hotfix",          # Feet
+            "amuleto_do_sysadmin",      # Amulet
+            "anel_do_commit",           # Ring
+            "escudo_do_rollback",       # Shield
+            "pocao_de_godmode",         # Consumable
+            "kit_de_emergencia",        # Consumable
+            "pergaminho_do_fix"         # Consumable
+        ]
+        
+        given_items = []
+        missing_items = []
+        
+        for item_name in admin_kit:
+            item_data = await self.bot.db.fetchrow(
+                "SELECT id, name, base_damage, base_defense FROM items WHERE name=$1",
+                item_name
+            )
+            
+            if not item_data:
+                missing_items.append(item_name)
+                continue
+            
+            # Adicionar ao inventário
+            await self.bot.db.execute(
+                """
+                INSERT INTO inventory (user_id, item_id, quantity)
+                VALUES ($1, $2, $3)
+                ON CONFLICT (user_id, item_id)
+                DO UPDATE SET quantity = inventory.quantity + $3
+                """,
+                target.id, item_data["id"], 1
+            )
+            
+            given_items.append(item_data["name"])
+        
+        embed = discord.Embed(
+            title="🎁 Kit de Admin Entregue",
+            description=f"Set completo de equipamento admin dado para {target.mention}",
+            color=discord.Color.purple()
+        )
+        
+        if given_items:
+            items_list = "\n".join([f"✓ {item.replace('_', ' ').title()}" for item in given_items])
+            embed.add_field(
+                name=f"✨ Itens Entregues ({len(given_items)})",
+                value=items_list,
+                inline=False
+            )
+        
+        if missing_items:
+            missing_list = "\n".join([f"✗ {item.replace('_', ' ').title()}" for item in missing_items])
+            embed.add_field(
+                name=f"⚠️ Itens Não Encontrados ({len(missing_items)})",
+                value=missing_list,
+                inline=False
+            )
+            embed.add_field(
+                name="📋 Como Corrigir",
+                value="Execute: `psql $DATABASE_URL < db/seeds/populate_admin_items.sql`",
+                inline=False
+            )
+        
+        embed.set_footer(text="⚠️ Use com responsabilidade! Estes itens têm stats absurdas.")
+        
+        await interaction.followup.send(embed=embed, ephemeral=True)
+
     @app_commands.command(name="restart", description="Reinicia o bot (apenas admin)")
+
     async def restart(self, interaction: discord.Interaction):
         if interaction.user.id != MY_ID:
             return await interaction.response.send_message("❌ Você não tem permissão para fazer isso.", ephemeral=True)
