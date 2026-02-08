@@ -14,7 +14,7 @@
 - [x] Mecânicas de PvP/Arena genéricas
 
 ### ⚠️ O que precisa MUDAR:
-- [ ] **CRÍTICO:** Sistema Tier T1.0-T8.4 (substituir)
+- [X] **CRÍTICO:** Sistema Tier T1.0-T8.4 (substituir)
 - [ ] **IMPORTANTE:** Renomear "Hideout" → "Sanctuary"
 - [ ] **RECOMENDADO:** Modificar fórmula Power Score
 - [ ] **OPCIONAL:** Trocar str/dex/int → might/agility/essence

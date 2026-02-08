@@ -1026,7 +1026,7 @@ class AdminRPG(commands.Cog):
         
         # Buscar item de admin no banco
         item_data = await self.bot.db.fetchrow(
-            "SELECT id, name, base_damage, base_defense, depth_new, quality_new FROM items WHERE name=$1",
+            "SELECT id, name, basedamage, basedefense, depth_new, quality_new FROM items WHERE name=$1",
             item
         )
         
@@ -1050,7 +1050,7 @@ class AdminRPG(commands.Cog):
         display_name = item.replace("_", " ").title()
         await interaction.response.send_message(
             f"✨ **{display_name}** x{quantity} dado para {target.mention}\n"
-            f"⚔️ DMG: `{item_data['base_damage']:,}` | 🛡️ DEF: `{item_data['base_defense']:,}`\n"
+            f"⚔️ DMG: `{item_data['basedamage']:,}` | 🛡️ DEF: `{item_data['basedefense']:,}`\n"
             f"🏅 Qualidade: **{item_data['quality_new']}** (Depth {item_data['depth_new']})",
             ephemeral=True
         )
@@ -1088,7 +1088,7 @@ class AdminRPG(commands.Cog):
         
         for item_name in admin_kit:
             item_data = await self.bot.db.fetchrow(
-                "SELECT id, name, base_damage, base_defense FROM items WHERE name=$1",
+                "SELECT id, name, basedamage, basedefense FROM items WHERE name=$1",
                 item_name
             )
             
