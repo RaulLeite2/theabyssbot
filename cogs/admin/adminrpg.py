@@ -4,6 +4,7 @@ from discord.ext import commands
 from dotenv import load_dotenv
 import os
 import sys
+from utils.rank_system import depth_to_rank, depth_to_rank_emoji, depth_to_rank_abbr
 
 load_dotenv()
 
@@ -444,7 +445,9 @@ class AdminRPG(commands.Cog):
             color=discord.Color.green()
         )
         embed.add_field(name="Nome", value=zone["nome"], inline=True)
-        embed.add_field(name="Tier", value=f"⭐ {zone['tier']}", inline=True)
+        rank_emoji = depth_to_rank_emoji(zone['tier'])
+        rank_name = depth_to_rank_abbr(zone['tier'])
+        embed.add_field(name="Rank", value=f"{rank_emoji} {rank_name}-Rank", inline=True)
         embed.add_field(name="Zone ID", value=zone["zone_id"], inline=True)
         embed.add_field(name="Hub", value="✅" if is_hub else "❌", inline=True)
         embed.add_field(name="Hideout", value="✅" if is_hideout else "❌", inline=True)

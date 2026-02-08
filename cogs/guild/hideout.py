@@ -3,6 +3,7 @@ from discord import app_commands
 from discord.ext import commands
 from datetime import datetime, timedelta
 import random
+from utils.rank_system import depth_to_rank, depth_to_rank_emoji, depth_to_rank_abbr
 
 
 class Hideout(commands.Cog):
@@ -576,7 +577,9 @@ class Hideout(commands.Cog):
             title=f"🗺️ Zona do Hideout: {zone['nome']}",
             color=discord.Color.green()
         )
-        embed.add_field(name="Tier", value=zone["tier"])
+        rank_emoji = depth_to_rank_emoji(zone["tier"])
+        rank_name = depth_to_rank(zone["tier"])
+        embed.add_field(name="Rank", value=f"{rank_emoji} {rank_name}")
         embed.add_field(name="Hideout Permanente?", value="✅" if zone["permanent"] else "❌")
         embed.add_field(name="É Hideout?", value="✅" if zone["is_hideout"] else "❌")
 
@@ -1263,7 +1266,9 @@ class Hideout(commands.Cog):
         )
         embed.add_field(name="👥 Membros", value=str(len(members_in_ho)), inline=True)
         embed.add_field(name="💪 Power Total", value=f"{total_power}", inline=True)
-        embed.add_field(name="🔥 Dificuldade", value=f"Tier {difficulty_tier}", inline=True)
+        rank_emoji = depth_to_rank_emoji(difficulty_tier)
+        rank_name = depth_to_rank_abbr(difficulty_tier)
+        embed.add_field(name="🔥 Dificuldade", value=f"{rank_emoji} {rank_name}-Rank", inline=True)
         
         member_list = "\n".join([f"<@{mid}>: `{pwr}` power" for mid, pwr in members_in_ho])
         embed.add_field(name="Party", value=member_list, inline=False)

@@ -62,6 +62,9 @@ def _iter_all_items(items_cache: Dict[str, Dict[str, Dict[str, Any]]]) -> List[T
     return items
 
 
+from utils.rank_system import format_item_rank_full, depth_to_rank_emoji, RANK_EMOJIS
+
+
 def _display_name(item_id: str, item_data: Dict[str, Any]) -> str:
     name = item_data.get("name")
     if isinstance(name, str) and name.strip():
@@ -70,13 +73,25 @@ def _display_name(item_id: str, item_data: Dict[str, Any]) -> str:
 
 
 def _tier_text(item_data: Dict[str, Any]) -> str:
-    tier = item_data.get("tier")
-    subtier = item_data.get("subtier")
-    if tier is None:
-        return "Desconhecido"
-    if subtier is None:
-        return f"T{tier}"
-    return f"T{tier}.{subtier}"
+    """Formata tier usando o novo Rank System (anime-style)"""
+    depth = item_data.get("depth_new")
+    quality = item_data.get("quality_new")
+    
+    # Fallback para tier/subtier antigos se não houver depth_new
+    if depth is None:
+        tier = item_data.get("tier")
+        subtier = item_data.get("subtier")
+        if tier is None:
+            return "Desconhecido"
+        if subtier is None:
+            return f"T{tier}"
+        return f"T{tier}.{subtier}"
+    
+    # Usar novo rank system
+    if quality is None:
+        quality = "COMMON"
+    
+    return format_item_rank_full(depth, quality)
 
 
 def _rarity_text(item_data: Dict[str, Any]) -> str:
@@ -169,7 +184,7 @@ def _build_item_embed(slot_id: int, item_id: str, item_data: Dict[str, Any], ind
         color=discord.Color.blurple(),
     )
     embed.add_field(name="Identificador", value=item_id, inline=False)
-    embed.add_field(name="Tier", value=_tier_text(item_data), inline=True)
+    embed.add_field(name="📊 Rank", value=_tier_text(item_data), inline=True)
     embed.add_field(name="Raridade", value=_rarity_text(item_data), inline=True)
 
     base_damage = item_data.get("base_damage", 0)
