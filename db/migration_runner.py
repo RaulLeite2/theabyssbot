@@ -76,58 +76,47 @@ class MigrationRunner:
         
         self._log("▶", "Initializing migration system")
         
-        # Verifica se as colunas críticas existem
-        self._log("⏳", "Checking database schema...")
-        columns = await self.check_columns_exist()
+        # Buscar todos os arquivos .sql na pasta migrations
+        migration_files = sorted(self.migrations_dir.glob("*.sql"))
         
-        depth_ok = columns.get("depth_new", False)
-        quality_ok = columns.get("quality_new", False)
+        # Filtrar apenas arquivos que não são rollback ou README
+        migration_files = [
+            f for f in migration_files 
+            if not f.name.endswith("_rollback.sql") 
+            and not f.name.startswith("README")
+        ]
         
-        if depth_ok and quality_ok:
-            self._log("✔", "Schema up-to-date (depth_new, quality_new exist)")
-            self._log("ⓘ", "No migrations needed")
+        if not migration_files:
+            self._log("ⓘ", "No migration files found")
             self._print_footer()
             return True
         
-        # Se faltam colunas, executa a migration
-        self._log("ⓘ", "Missing columns detected")
-        self._log("▶", "Running migration: add_depth_quality_columns.sql")
+        self._log("ⓘ", f"Found {len(migration_files)} migration file(s)")
         
-        migration_file = self.migrations_dir / "add_depth_quality_columns.sql"
+        # Executar cada migration
+        all_success = True
+        executed_count = 0
         
-        if not migration_file.exists():
-            self._log("✗", f"Migration file not found: {migration_file}", prefix="ERR")
-            self._log("⚠", "Critical migration missing - bot may fail!", prefix="ERR")
-            self._print_footer()
-            return False
-        
-        success = await self.run_migration_file(migration_file)
-        
-        if success:
-            # Verifica novamente após migration
-            self._log("⏳", "Verifying migration results...")
-            columns_after = await self.check_columns_exist()
+        for migration_file in migration_files:
+            self._log("▶", f"Running: {migration_file.name}")
             
-            if columns_after["depth_new"] and columns_after["quality_new"]:
-                self._log("✔", "Migration completed successfully")
-                
-                # Mostra estatística rápida
-                stats = await self.db.fetchrow("""
-                    SELECT 
-                        COUNT(*) as total_items,
-                        COUNT(depth_new) as with_depth,
-                        COUNT(quality_new) as with_quality
-                    FROM items
-                """)
-                
-                if stats:
-                    self._log("ⓘ", f"Items migrated: {stats['with_depth']}/{stats['total_items']}")
+            success = await self.run_migration_file(migration_file)
+            
+            if success:
+                executed_count += 1
             else:
-                self._log("✗", "Migration executed but columns still missing", prefix="ERR")
-                success = False
+                all_success = False
+                self._log("⚠", f"Migration failed, continuing with others...", prefix="WARN")
+        
+        # Sumário final
+        print()  # Espaço
+        if all_success:
+            self._log("✔", f"All migrations completed ({executed_count}/{len(migration_files)})")
+        else:
+            self._log("⚠", f"Some migrations failed ({executed_count}/{len(migration_files)})", prefix="WARN")
         
         self._print_footer()
-        return success
+        return all_success
 
 
 async def run_migrations(db_pool) -> bool:

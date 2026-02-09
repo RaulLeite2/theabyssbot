@@ -284,4 +284,4 @@ class RPGRefactored(commands.Cog):
 
 async def setup(bot: commands.Bot):
     """Carrega o cog refatorado"""
-    bot.add_cog(RPGRefactored(bot))
+    await bot.add_cog(RPGRefactored(bot))

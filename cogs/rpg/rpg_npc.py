@@ -176,7 +176,7 @@ class NPCSystem(commands.Cog):
         # Busca itens de depth alto (6+) com qualidade rara ou superior
         legendary_items = await self.bot.db.fetch(
             """
-            SELECT id, depth_new, quality_new
+            SELECT id, depth_new, quality_new, tier
             FROM items 
             WHERE depth_new >= 6 AND is_collectible = FALSE
             ORDER BY RANDOM()
