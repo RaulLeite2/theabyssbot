@@ -8,6 +8,5 @@
 -- As colunas depth_new e quality_new já foram criadas pela migration 000.
 -- Nenhuma ação adicional necessária neste momento.
 
--- Indices são criados para performance
+-- Indices são criados para performance (apenas em items)
 CREATE INDEX IF NOT EXISTS idx_items_depth_quality ON items(depth_new, quality_new);
-CREATE INDEX IF NOT EXISTS idx_equipment_depth_quality ON equipment(depth_new, quality_new);
