@@ -7,30 +7,64 @@
 -- PARTE 1: RENOMEAR TABELAS
 -- =========================
 
--- 1. Tabela principal: hideouts → sanctuaries
-ALTER TABLE IF EXISTS hideouts RENAME TO sanctuaries;
+DO $$
+BEGIN
+    -- 1. Tabela principal: hideouts → sanctuaries
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'hideouts') THEN
+        ALTER TABLE hideouts RENAME TO sanctuaries;
+    END IF;
 
--- 2. Tabelas relacionadas
-ALTER TABLE IF EXISTS hideout_recipes RENAME TO sanctuary_recipes;
-ALTER TABLE IF EXISTS hideout_recipe_materials RENAME TO sanctuary_recipe_materials;
-ALTER TABLE IF EXISTS hideout_crafting_queue RENAME TO sanctuary_crafting_queue;
-ALTER TABLE IF EXISTS hideout_dungeon_runs RENAME TO sanctuary_dungeon_runs;
-ALTER TABLE IF EXISTS hideout_dungeon_party RENAME TO sanctuary_dungeon_party;
-ALTER TABLE IF EXISTS hideout_dungeon_rewards RENAME TO sanctuary_dungeon_rewards;
+    -- 2. Tabelas relacionadas
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'hideout_recipes') THEN
+        ALTER TABLE hideout_recipes RENAME TO sanctuary_recipes;
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'hideout_recipe_materials') THEN
+        ALTER TABLE hideout_recipe_materials RENAME TO sanctuary_recipe_materials;
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'hideout_crafting_queue') THEN
+        ALTER TABLE hideout_crafting_queue RENAME TO sanctuary_crafting_queue;
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'hideout_dungeon_runs') THEN
+        ALTER TABLE hideout_dungeon_runs RENAME TO sanctuary_dungeon_runs;
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'hideout_dungeon_party') THEN
+        ALTER TABLE hideout_dungeon_party RENAME TO sanctuary_dungeon_party;
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'hideout_dungeon_rewards') THEN
+        ALTER TABLE hideout_dungeon_rewards RENAME TO sanctuary_dungeon_rewards;
+    END IF;
+END $$;
 
 -- =========================
 -- PARTE 2: RENOMEAR COLUNAS (Foreign Keys e Referencias)
 -- =========================
 
--- 2.1 Coluna in_hideout_id na tabela users
-ALTER TABLE users RENAME COLUMN IF EXISTS in_hideout_id TO in_sanctuary_id;
+DO $$
+BEGIN
+    -- 2.1 Coluna in_hideout_id na tabela users
+    IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'users' AND column_name = 'in_hideout_id') THEN
+        ALTER TABLE users RENAME COLUMN in_hideout_id TO in_sanctuary_id;
+    END IF;
 
--- 2.2 Coluna is_hideout na tabela zone
-ALTER TABLE zone RENAME COLUMN IF EXISTS is_hideout TO is_sanctuary;
+    -- 2.2 Coluna is_hideout na tabela zone
+    IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'zone' AND column_name = 'is_hideout') THEN
+        ALTER TABLE zone RENAME COLUMN is_hideout TO is_sanctuary;
+    END IF;
 
--- 2.3 Atualizar colunas hideout_id para sanctuary_id em tabelas relacionadas
-ALTER TABLE sanctuary_crafting_queue RENAME COLUMN IF EXISTS hideout_id TO sanctuary_id;
-ALTER TABLE sanctuary_dungeon_runs RENAME COLUMN IF EXISTS hideout_id TO sanctuary_id;
+    -- 2.3 Atualizar colunas hideout_id para sanctuary_id em tabelas relacionadas
+    IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'sanctuary_crafting_queue' AND column_name = 'hideout_id') THEN
+        ALTER TABLE sanctuary_crafting_queue RENAME COLUMN hideout_id TO sanctuary_id;
+    END IF;
+
+    IF EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'sanctuary_dungeon_runs' AND column_name = 'hideout_id') THEN
+        ALTER TABLE sanctuary_dungeon_runs RENAME COLUMN hideout_id TO sanctuary_id;
+    END IF;
+END $$;
 
 -- =========================
 -- PARTE 3: RENOMEAR CONSTRAINTS (Foreign Keys)
