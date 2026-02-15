@@ -1,6 +1,6 @@
 -- =========================
 -- CRISTAL DE FUNDAÇÃO DO SANTUÁRIO
--- Item especial para criar Hideout/Sanctuary
+-- Item especial para criar Sanctuary
 -- =========================
 
 BEGIN TRANSACTION;

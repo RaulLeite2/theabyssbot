@@ -5,9 +5,9 @@
       "base_damage": 100000,
       "base_defense": 50000,
       "scaling": {
-        "str": 1000.0,
-        "dex": 1000.0,
-        "int": 1000.0
+        "might": 1000.0,
+        "agility": 1000.0,
+        "essence": 1000.0
       },
       "buffs": [
         {"type": "crit_chance", "value": 100},
@@ -29,9 +29,9 @@
       "base_damage": 5000,
       "base_defense": 200000,
       "scaling": {
-        "str": 500.0,
-        "dex": 500.0,
-        "int": 500.0
+        "might": 500.0,
+        "agility": 500.0,
+        "essence": 500.0
       },
       "buffs": [
         {"type": "damage_reduction", "value": 90},
@@ -53,12 +53,12 @@
       "base_damage": 10000,
       "base_defense": 150000,
       "scaling": {
-        "str": 300.0,
-        "dex": 300.0,
-        "int": 1500.0
+        "might": 300.0,
+        "agility": 300.0,
+        "essence": 1500.0
       },
       "buffs": [
-        {"type": "int_boost", "value": 5000},
+        {"type": "essence_boost", "value": 5000},
         {"type": "mana_boost", "value": 50000},
         {"type": "mana_regen", "value": 2000},
         {"type": "spell_power", "value": 500},
@@ -77,12 +77,12 @@
       "base_damage": 8000,
       "base_defense": 120000,
       "scaling": {
-        "str": 400.0,
-        "dex": 1200.0,
-        "int": 400.0
+        "might": 400.0,
+        "agility": 1200.0,
+        "essence": 400.0
       },
       "buffs": [
-        {"type": "dex_boost", "value": 5000},
+        {"type": "agility_boost", "value": 5000},
         {"type": "dodge_chance", "value": 75},
         {"type": "movement_speed", "value": 500},
         {"type": "attack_speed", "value": 300},
@@ -101,14 +101,14 @@
       "base_damage": 15000,
       "base_defense": 80000,
       "scaling": {
-        "str": 600.0,
-        "dex": 800.0,
-        "int": 600.0
+        "might": 600.0,
+        "agility": 800.0,
+        "essence": 600.0
       },
       "buffs": [
         {"type": "movement_speed", "value": 1000},
-        {"type": "str_boost", "value": 3000},
-        {"type": "dex_boost", "value": 3000},
+        {"type": "might_boost", "value": 3000},
+        {"type": "agility_boost", "value": 3000},
         {"type": "kick_damage", "value": 50000},
         {"type": "stamina_boost", "value": 10000}
       ],
@@ -125,9 +125,9 @@
       "base_damage": 50000,
       "base_defense": 50000,
       "scaling": {
-        "str": 1000.0,
-        "dex": 1000.0,
-        "int": 1000.0
+        "might": 1000.0,
+        "agility": 1000.0,
+        "essence": 1000.0
       },
       "buffs": [
         {"type": "all_stats", "value": 10000},
@@ -152,9 +152,9 @@
       "base_damage": 25000,
       "base_defense": 25000,
       "scaling": {
-        "str": 500.0,
-        "dex": 500.0,
-        "int": 500.0
+        "might": 500.0,
+        "agility": 500.0,
+        "essence": 500.0
       },
       "buffs": [
         {"type": "crit_chance", "value": 100},
@@ -176,9 +176,9 @@
       "base_damage": 0,
       "base_defense": 500000,
       "scaling": {
-        "str": 1000.0,
-        "dex": 200.0,
-        "int": 200.0
+        "might": 1000.0,
+        "agility": 200.0,
+        "essence": 200.0
       },
       "buffs": [
         {"type": "damage_reduction", "value": 99},
@@ -200,13 +200,13 @@
       "base_damage": 250000,
       "base_defense": 10000,
       "scaling": {
-        "str": 100.0,
-        "dex": 200.0,
-        "int": 5000.0
+        "might": 100.0,
+        "agility": 200.0,
+        "essence": 5000.0
       },
       "buffs": [
         {"type": "spell_power", "value": 2000},
-        {"type": "int_boost", "value": 15000},
+        {"type": "essence_boost", "value": 15000},
         {"type": "mana_boost", "value": 1000000},
         {"type": "mana_regen", "value": 50000},
         {"type": "cooldown_reduction", "value": 90},

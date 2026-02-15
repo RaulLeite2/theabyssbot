@@ -147,7 +147,7 @@ class ItemIntegrityManager:
                 "item_identifier": {
                     "base_damage": int,
                     "base_defense": int,
-                    "scaling": {"str": float, "dex": float, ...},
+                    "scaling": {"might": float, "agility": float, ...},
                     "buffs": [{"type": str, "value": float}],
                     "flags": {"legendary": bool, "tradeable": bool, ...}
                 }

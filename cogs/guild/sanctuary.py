@@ -63,7 +63,7 @@ class Sanctuary(commands.Cog):
             sanctuary = await self.bot.db.fetchrow(
                 """
                 SELECT h.id, h.name, h.energy, g.name as guild_name, a.name as alliance_name
-                FROM hideouts h
+                FROM sanctuaries h
                 LEFT JOIN guilds g ON h.guild_id = g.id
                 LEFT JOIN alliances a ON h.alliance_id = a.id
                 WHERE h.zone_id = $1 
@@ -76,7 +76,7 @@ class Sanctuary(commands.Cog):
             sanctuary = await self.bot.db.fetchrow(
                 """
                 SELECT h.id, h.name, h.energy, g.name as guild_name
-                FROM hideouts h
+                FROM sanctuaries h
                 LEFT JOIN guilds g ON h.guild_id = g.id
                 WHERE h.zone_id = $1 
                 AND h.guild_id = $2
@@ -130,7 +130,7 @@ class Sanctuary(commands.Cog):
                 
                 # Busca todos os sanctuaries com energia 0
                 sanctuaries_without_energy = await self.bot.db.fetch(
-                    "SELECT id, guild_id, zone_id, name, durability FROM hideouts WHERE energy = 0"
+                    "SELECT id, guild_id, zone_id, name, durability FROM sanctuaries WHERE energy = 0"
                 )
                 
                 for sanc in sanctuaries_without_energy:
@@ -143,7 +143,7 @@ class Sanctuary(commands.Cog):
                         # Sanctuary destruído! Deleta o sanctuary e a zona
                         try:
                             await self.bot.db.execute(
-                                "DELETE FROM hideouts WHERE id = $1",
+                                "DELETE FROM sanctuaries WHERE id = $1",
                                 sanc["id"]
                             )
                             await self.bot.db.execute(
@@ -156,7 +156,7 @@ class Sanctuary(commands.Cog):
                     else:
                         # Atualiza a durabilidade
                         await self.bot.db.execute(
-                            "UPDATE hideouts SET durability = $1 WHERE id = $2",
+                            "UPDATE sanctuaries SET durability = $1 WHERE id = $2",
                             new_durability, sanc["id"]
                         )
                         print(f"⚠️ Sanctuary '{sanc['name']}' (ID: {sanc['id']}) perdeu durabilidade: {current_durability} → {new_durability}")
@@ -207,7 +207,7 @@ class Sanctuary(commands.Cog):
                     
                     await conn.execute(
                         """
-                        INSERT INTO zone (zone_id, nome, tier, is_hub, is_hideout, permanent, owner_guild)
+                        INSERT INTO zone (zone_id, nome, tier, is_hub, is_sanctuary, permanent, owner_guild)
                         VALUES ($1, $2, $3, $4, TRUE, TRUE, $5)
                         """,
                         new_zone_id,
@@ -260,7 +260,7 @@ class Sanctuary(commands.Cog):
     async def get_sanctuary(self, guild_id: int):
         """Pega o sanctuary pelo guild_id."""
         return await self.bot.db.fetchrow(
-            "SELECT * FROM hideouts WHERE guild_id = $1",
+            "SELECT * FROM sanctuaries WHERE guild_id = $1",
             guild_id
         )
 
@@ -281,7 +281,7 @@ class Sanctuary(commands.Cog):
 
             await self.bot.db.execute(
                 """
-                UPDATE hideouts
+                UPDATE sanctuaries
                 SET energy = max_energy,
                     last_recharge = $1
                 WHERE guild_id = $2
@@ -294,7 +294,7 @@ class Sanctuary(commands.Cog):
 
     async def get_all_sanctuaries(self):
         """Retorna todos os sanctuaries cadastrados."""
-        return await self.bot.db.fetch("SELECT * FROM hideouts")
+        return await self.bot.db.fetch("SELECT * FROM sanctuaries")
 
     async def validate_guild_leader_and_sanctuary(self, user_id: int):
         """Valida se o usuário é líder de uma guilda e se a guilda tem sanctuary."""
@@ -351,7 +351,7 @@ class Sanctuary(commands.Cog):
 
         # Check if guild already has 7 sanctuaries
         sanctuary_count = await self.bot.db.fetchval(
-            "SELECT COUNT(*) FROM hideouts WHERE guild_id = $1",
+            "SELECT COUNT(*) FROM sanctuaries WHERE guild_id = $1",
             guild_id
         )
         if sanctuary_count >= 7:
@@ -394,7 +394,7 @@ class Sanctuary(commands.Cog):
             existing_sanctuaries = await self.bot.db.fetchval(
                 """
                 SELECT COUNT(DISTINCT h.zone_id)
-                FROM hideouts h
+                FROM sanctuaries h
                 JOIN zone z ON z.zone_id = h.zone_id
                 WHERE z.nome = $1 AND z.zone_id != $2
                 """,
@@ -416,7 +416,7 @@ class Sanctuary(commands.Cog):
         else:
             # Para zonas normais, verifica se já tem sanctuary
             existing_sanctuary = await self.bot.db.fetchval(
-                "SELECT 1 FROM hideouts WHERE zone_id = $1",
+                "SELECT 1 FROM sanctuaries WHERE zone_id = $1",
                 base_zone_id
             )
             
@@ -450,7 +450,7 @@ class Sanctuary(commands.Cog):
         try:
             await self.bot.db.execute(
                 """
-                INSERT INTO hideouts (guild_id, zone_id, name, alliance_id, energy, max_energy, level, durability, max_durability)
+                INSERT INTO sanctuaries (guild_id, zone_id, name, alliance_id, energy, max_energy, level, durability, max_durability)
                 VALUES ($1, $2, $3, $4, 100, 100, 1, 100, 100)
                 """,
                 guild_id, zone_id, fictional_zone_name, alliance_id
@@ -632,7 +632,7 @@ class Sanctuary(commands.Cog):
             """
             SELECT h.id, h.zone_id, h.name, h.level, h.energy, h.max_energy,
                    z.nome as zone_name, z.zone_id as zone_exists
-            FROM hideouts h
+            FROM sanctuaries h
             LEFT JOIN zone z ON z.zone_id = h.zone_id
             WHERE h.guild_id = $1
             ORDER BY h.id
@@ -704,7 +704,7 @@ class Sanctuary(commands.Cog):
         orphaned = await self.bot.db.fetch(
             """
             SELECT h.id, h.name, h.zone_id
-            FROM hideouts h
+            FROM sanctuaries h
             WHERE h.guild_id = $1
             AND NOT EXISTS (SELECT 1 FROM zone z WHERE z.zone_id = h.zone_id)
             """,
@@ -722,7 +722,7 @@ class Sanctuary(commands.Cog):
         deleted_names = []
         for sanc in orphaned:
             await self.bot.db.execute(
-                "DELETE FROM hideouts WHERE id = $1",
+                "DELETE FROM sanctuaries WHERE id = $1",
                 sanc["id"]
             )
             deleted_count += 1
@@ -778,7 +778,7 @@ class Sanctuary(commands.Cog):
         
         # Deleta o sanctuary
         await self.bot.db.execute(
-            "DELETE FROM hideouts WHERE id = $1",
+            "DELETE FROM sanctuaries WHERE id = $1",
             sanctuary_id
         )
         
@@ -824,11 +824,31 @@ class Sanctuary(commands.Cog):
         await self.sanc_delete(interaction, hideout_id)
 
     # =========================
-    # POWER SCORE SYSTEM
+    # POWER SCORE SYSTEM - THE ABYSS ORIGINAL FORMULA
     # =========================
     
     async def calculate_power_score(self, user_id: int) -> int:
-        """Calcula o Power Score do jogador baseado em arma e armadura equipadas"""
+        """
+        Calcula o Power Score do jogador baseado em arma e armadura equipadas.
+        
+        Fórmula The Abyss (Original):
+        - Weapon: (basedamage × 1.5 + depth × 100) × quality_multiplier
+        - Armor: (basedefense × 1.5 + depth × 75) × quality_multiplier
+        
+        Quality Multipliers:
+        - COMMON: 1.0x | UNCOMMON: 1.15x | RARE: 1.3x
+        - EPIC: 1.6x | LEGENDARY: 2.0x | MYTHIC: 2.5x
+        """
+        # Multiplicadores de qualidade
+        QUALITY_MULTIPLIERS = {
+            "COMMON": 1.0,
+            "UNCOMMON": 1.15,
+            "RARE": 1.3,
+            "EPIC": 1.6,
+            "LEGENDARY": 2.0,
+            "MYTHIC": 2.5
+        }
+        
         user = await self.bot.db.fetchrow(
             """
             SELECT equipped_weapon, equipped_armor 
@@ -846,22 +866,42 @@ class Sanctuary(commands.Cog):
         # Arma equipada
         if user['equipped_weapon']:
             weapon = await self.bot.db.fetchrow(
-                "SELECT basedamage, tier FROM items WHERE id = $1",
+                """
+                SELECT basedamage, depth_new, quality_new, tier 
+                FROM items WHERE id = $1
+                """,
                 user['equipped_weapon']
             )
             if weapon:
-                # Power = (basedamage * 2) + (tier * 50)
-                power_score += (weapon['basedamage'] or 0) * 2 + weapon['tier'] * 50
+                # Usa depth_new se disponível, senão fallback para tier
+                depth = weapon['depth_new'] if weapon.get('depth_new') else weapon.get('tier', 1)
+                quality = weapon.get('quality_new', 'COMMON').upper()
+                quality_mult = QUALITY_MULTIPLIERS.get(quality, 1.0)
+                
+                # Fórmula The Abyss Original
+                base_dmg = weapon['basedamage'] or 0
+                weapon_power = (base_dmg * 1.5 + depth * 100) * quality_mult
+                power_score += int(weapon_power)
         
         # Armadura equipada
         if user['equipped_armor']:
             armor = await self.bot.db.fetchrow(
-                "SELECT basedefense, tier FROM items WHERE id = $1",
+                """
+                SELECT basedefense, depth_new, quality_new, tier 
+                FROM items WHERE id = $1
+                """,
                 user['equipped_armor']
             )
             if armor:
-                # Power = (basedefense * 2) + (tier * 50)
-                power_score += (armor['basedefense'] or 0) * 2 + armor['tier'] * 50
+                # Usa depth_new se disponível, senão fallback para tier
+                depth = armor['depth_new'] if armor.get('depth_new') else armor.get('tier', 1)
+                quality = armor.get('quality_new', 'COMMON').upper()
+                quality_mult = QUALITY_MULTIPLIERS.get(quality, 1.0)
+                
+                # Fórmula The Abyss Original
+                base_def = armor['basedefense'] or 0
+                armor_power = (base_def * 1.5 + depth * 75) * quality_mult
+                power_score += int(armor_power)
         
         return power_score
 
@@ -885,7 +925,7 @@ class Sanctuary(commands.Cog):
         
         # Pega a zona atual do usuário
         user = await self.bot.db.fetchrow(
-            "SELECT zona_id, in_hideout_id FROM users WHERE discord_id = $1",
+            "SELECT zona_id, in_sanctuary_id FROM users WHERE discord_id = $1",
             interaction.user.id
         )
         
@@ -895,7 +935,7 @@ class Sanctuary(commands.Cog):
                 ephemeral=True
             )
         
-        if user['in_hideout_id']:
+        if user['in_sanctuary_id']:
             return await interaction.response.send_message(
                 "❌ Você já está dentro de um Sanctuary! Use `/sanc sair` primeiro.",
                 ephemeral=True
@@ -915,7 +955,7 @@ class Sanctuary(commands.Cog):
             sanctuary = await self.bot.db.fetchrow(
                 """
                 SELECT h.id, h.name, h.energy, h.has_crafting_station, h.has_dungeon_portal
-                FROM hideouts h
+                FROM sanctuaries h
                 JOIN zone z ON h.zone_id = z.zone_id
                 WHERE z.zone_id = $1 
                 AND (h.guild_id = $2 OR h.alliance_id = $3)
@@ -927,7 +967,7 @@ class Sanctuary(commands.Cog):
             sanctuary = await self.bot.db.fetchrow(
                 """
                 SELECT h.id, h.name, h.energy, h.has_crafting_station, h.has_dungeon_portal
-                FROM hideouts h
+                FROM sanctuaries h
                 JOIN zone z ON h.zone_id = z.zone_id
                 WHERE z.zone_id = $1 
                 AND h.guild_id = $2
@@ -946,7 +986,7 @@ class Sanctuary(commands.Cog):
         await self.bot.db.execute(
             """
             UPDATE users 
-            SET in_hideout_id = $1, previous_zone_id = $2
+            SET in_sanctuary_id = $1, previous_zone_id = $2
             WHERE discord_id = $3
             """,
             sanctuary['id'], current_zone_id, interaction.user.id
@@ -987,11 +1027,11 @@ class Sanctuary(commands.Cog):
     @sanc.command(name="sair", description="Sai do Sanctuary e retorna à zona anterior")
     async def sanc_sair(self, interaction: discord.Interaction):
         user = await self.bot.db.fetchrow(
-            "SELECT in_hideout_id, previous_zone_id FROM users WHERE discord_id = $1",
+            "SELECT in_sanctuary_id, previous_zone_id FROM users WHERE discord_id = $1",
             interaction.user.id
         )
         
-        if not user or not user['in_hideout_id']:
+        if not user or not user['in_sanctuary_id']:
             return await interaction.response.send_message(
                 "❌ Você não está em nenhum Sanctuary!",
                 ephemeral=True
@@ -1003,7 +1043,7 @@ class Sanctuary(commands.Cog):
         await self.bot.db.execute(
             """
             UPDATE users 
-            SET in_hideout_id = NULL, previous_zone_id = NULL
+            SET in_sanctuary_id = NULL, previous_zone_id = NULL
             WHERE discord_id = $1
             """,
             interaction.user.id
@@ -1049,11 +1089,11 @@ class Sanctuary(commands.Cog):
                 ephemeral=True
             )
         
-        sanctuary_id = user['in_hideout_id']
+        sanctuary_id = user['in_sanctuary_id']
         
         # Verifica se o sanctuary tem estação de crafting
         sanctuary = await self.bot.db.fetchrow(
-            "SELECT has_crafting_station, level FROM hideouts WHERE id = $1",
+            "SELECT has_crafting_station, level FROM sanctuaries WHERE id = $1",
             sanctuary_id
         )
         
@@ -1067,7 +1107,7 @@ class Sanctuary(commands.Cog):
         recipe = await self.bot.db.fetchrow(
             """
             SELECT r.*, i.name as result_name
-            FROM hideout_recipes r
+            FROM sanctuary_recipes r
             JOIN items i ON r.result_item_id = i.id
             WHERE r.id = $1
             """,
@@ -1129,8 +1169,8 @@ class Sanctuary(commands.Cog):
         finish_time = datetime.now() + timedelta(seconds=recipe['craft_time_seconds'])
         await self.bot.db.execute(
             """
-            INSERT INTO hideout_crafting_queue 
-            (hideout_id, user_id, recipe_id, finishes_at)
+            INSERT INTO sanctuary_crafting_queue 
+            (sanctuary_id, user_id, recipe_id, finishes_at)
             VALUES ($1, $2, $3, $4)
             """,
             sanctuary_id, interaction.user.id, recipe_id, finish_time
@@ -1165,7 +1205,7 @@ class Sanctuary(commands.Cog):
             """
             SELECT r.id, r.name, r.description, r.min_hideout_level, 
                    i.name as result_name, r.result_quantity
-            FROM hideout_recipes r
+            FROM sanctuary_recipes r
             JOIN items i ON r.result_item_id = i.id
             ORDER BY r.min_hideout_level, r.id
             """
@@ -1233,7 +1273,7 @@ class Sanctuary(commands.Cog):
         sanctuary = await self.bot.db.fetchrow(
             """
             SELECT has_dungeon_portal, dungeon_cooldown, level, name
-            FROM hideouts WHERE id = $1
+            FROM sanctuaries WHERE id = $1
             """,
             sanctuary_id
         )
@@ -1269,11 +1309,11 @@ class Sanctuary(commands.Cog):
         
         for member_id in party.members:
             member_data = await self.bot.db.fetchrow(
-                "SELECT in_hideout_id FROM users WHERE discord_id = $1",
+                "SELECT in_sanctuary_id FROM users WHERE discord_id = $1",
                 member_id
             )
             
-            if member_data and member_data['in_hideout_id'] == sanctuary_id:
+            if member_data and member_data['in_sanctuary_id'] == sanctuary_id:
                 power = await self.calculate_power_score(member_id)
                 members_in_sanc.append((member_id, power))
                 total_power += power
@@ -1298,8 +1338,8 @@ class Sanctuary(commands.Cog):
         
         run_id = await self.bot.db.fetchval(
             """
-            INSERT INTO hideout_dungeon_runs 
-            (hideout_id, party_leader_id, total_power_score, difficulty_tier)
+            INSERT INTO sanctuary_dungeon_runs 
+            (sanctuary_id, party_leader_id, total_power_score, difficulty_tier)
             VALUES ($1, $2, $3, $4)
             RETURNING id
             """,
@@ -1310,7 +1350,7 @@ class Sanctuary(commands.Cog):
         for member_id, power in members_in_sanc:
             await self.bot.db.execute(
                 """
-                INSERT INTO hideout_dungeon_party (run_id, user_id, power_score)
+                INSERT INTO sanctuary_dungeon_party (run_id, user_id, power_score)
                 VALUES ($1, $2, $3)
                 """,
                 run_id, member_id, power
@@ -1319,7 +1359,7 @@ class Sanctuary(commands.Cog):
         # Define cooldown (1 hora)
         cooldown_time = datetime.now() + timedelta(hours=1)
         await self.bot.db.execute(
-            "UPDATE hideouts SET dungeon_cooldown = $1 WHERE id = $2",
+            "UPDATE sanctuaries SET dungeon_cooldown = $1 WHERE id = $2",
             cooldown_time, sanctuary_id
         )
         
@@ -1359,7 +1399,7 @@ class Sanctuary(commands.Cog):
         # Atualiza a run
         await self.bot.db.execute(
             """
-            UPDATE hideout_dungeon_runs 
+            UPDATE sanctuary_dungeon_runs 
             SET completed_at = NOW(), success = $1
             WHERE id = $2
             """,
@@ -1374,7 +1414,7 @@ class Sanctuary(commands.Cog):
                 
                 await self.bot.db.execute(
                     """
-                    INSERT INTO hideout_dungeon_rewards 
+                    INSERT INTO sanctuary_dungeon_rewards 
                     (run_id, user_id, gold_reward)
                     VALUES ($1, $2, $3)
                     """,
@@ -1431,7 +1471,7 @@ class Sanctuary(commands.Cog):
         sanctuaries = await self.bot.db.fetch(
             """
             SELECT id, name, has_crafting_station, has_dungeon_portal, level
-            FROM hideouts WHERE guild_id = $1
+            FROM sanctuaries WHERE guild_id = $1
             """,
             guild['id']
         )
@@ -1461,7 +1501,7 @@ class Sanctuary(commands.Cog):
                 )
             
             await self.bot.db.execute(
-                "UPDATE hideouts SET has_crafting_station = TRUE WHERE id = $1",
+                "UPDATE sanctuaries SET has_crafting_station = TRUE WHERE id = $1",
                 sanctuary['id']
             )
             await self.bot.db.execute(
@@ -1489,7 +1529,7 @@ class Sanctuary(commands.Cog):
                 )
             
             await self.bot.db.execute(
-                "UPDATE hideouts SET has_dungeon_portal = TRUE WHERE id = $1",
+                "UPDATE sanctuaries SET has_dungeon_portal = TRUE WHERE id = $1",
                 sanctuary['id']
             )
             await self.bot.db.execute(

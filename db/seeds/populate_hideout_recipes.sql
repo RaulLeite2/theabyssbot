@@ -1,5 +1,5 @@
 -- =========================
--- RECEITAS DE CRAFTING DO HIDEOUT
+-- RECEITAS DE CRAFTING DO SANCTUARY
 -- Populate script para exemplos iniciais
 -- =========================
 
@@ -8,7 +8,7 @@
 -- =========================
 -- RECEITA 1: Espada do Abismo (Tier 8)
 -- =========================
-INSERT INTO hideout_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
+INSERT INTO sanctuary_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
 VALUES (
     'Espada do Abismo',
     'Uma lâmina forjada nas profundezas do abismo, pulsando com energia sombria.',
@@ -19,7 +19,7 @@ VALUES (
 ) ON CONFLICT DO NOTHING;
 
 -- Materiais (ajuste os IDs)
--- INSERT INTO hideout_recipe_materials (recipe_id, item_id, quantity)
+-- INSERT INTO sanctuary_recipe_materials (recipe_id, item_id, quantity)
 -- VALUES 
 --   (1, 100, 50),  -- 50x Fragmento Sombrio
 --   (1, 101, 20),  -- 20x Minério Negro
@@ -28,7 +28,7 @@ VALUES (
 -- =========================
 -- RECEITA 2: Armadura de Placas Reforçada (Tier 7)
 -- =========================
-INSERT INTO hideout_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
+INSERT INTO sanctuary_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
 VALUES (
     'Armadura de Placas Místicas',
     'Placas de metal infundidas com magia protetora.',
@@ -41,7 +41,7 @@ VALUES (
 -- =========================
 -- RECEITA 3: Poção de Poder Supremo
 -- =========================
-INSERT INTO hideout_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
+INSERT INTO sanctuary_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
 VALUES (
     'Poção de Poder Supremo',
     'Aumenta temporariamente seu poder de combate.',
@@ -54,7 +54,7 @@ VALUES (
 -- =========================
 -- RECEITA 4: Elixir de Regeneração Maior
 -- =========================
-INSERT INTO hideout_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
+INSERT INTO sanctuary_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
 VALUES (
     'Elixir de Regeneração Maior',
     'Restaura uma quantidade massiva de HP ao longo do tempo.',
@@ -67,7 +67,7 @@ VALUES (
 -- =========================
 -- RECEITA 5: Gema do Abismo
 -- =========================
-INSERT INTO hideout_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
+INSERT INTO sanctuary_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
 VALUES (
     'Gema do Abismo',
     'Uma gema rara usada para aprimorar equipamentos lendários.',
@@ -80,7 +80,7 @@ VALUES (
 -- =========================
 -- RECEITA 6: Escudo Cristalino
 -- =========================
-INSERT INTO hideout_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
+INSERT INTO sanctuary_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
 VALUES (
     'Escudo Cristalino',
     'Escudo feito de cristais mágicos que refletem ataques.',
@@ -93,7 +93,7 @@ VALUES (
 -- =========================
 -- RECEITA 7: Botas do Vento
 -- =========================
-INSERT INTO hideout_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
+INSERT INTO sanctuary_recipes (name, description, result_item_id, result_quantity, min_hideout_level, craft_time_seconds)
 VALUES (
     'Botas do Vento',
     'Botas leves que aumentam sua velocidade de movimento.',

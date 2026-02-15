@@ -97,6 +97,20 @@ python scripts/setup_hubs.py
 python main.py
 ```
 
+## 🎮 Comandos do Jogo
+
+**Guia completo de comandos:** [📖 COMANDOS.md](docs/COMANDOS.md)
+
+### Comandos Principais
+- **`/help`** - Tutorial interativo com menu
+- **`/rpg start`** - Iniciar jornada (primeiro comando!)
+- **`/profile`** - Ver perfil e stats
+- **`/battle hunt`** - Caçar monstros
+- **`/explore`** - Explorar e ganhar recursos
+- **`/talk [npc]`** - Conversar com NPCs
+- **`/craft`** - Sistema de crafting
+- **`/shop`** - Loja da capital
+
 ## 📖 Sistemas Implementados
 
 ### 🎮 Core RPG

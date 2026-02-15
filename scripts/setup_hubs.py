@@ -76,7 +76,7 @@ async def main():
                 if not exists:
                     await conn.execute(
                         """
-                        INSERT INTO zone (nome, tier, is_hub, is_hideout, permanent)
+                        INSERT INTO zone (nome, tier, is_hub, is_sanctuary, permanent)
                         VALUES ($1, $2, $3, FALSE, TRUE)
                         """,
                         hub_name, tier, is_hub

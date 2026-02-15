@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS zone (
     tier INTEGER NOT NULL CHECK (tier > 0),
 
     is_hub BOOLEAN DEFAULT FALSE,          -- cidade / capital
-    is_hideout BOOLEAN DEFAULT FALSE,      -- zona de hideout
+    is_sanctuary BOOLEAN DEFAULT FALSE,      -- zona de sanctuary
 
     owner_guild INT REFERENCES guilds(id),     -- domínio de guild
     owner_alliance INT REFERENCES alliances(id), -- domínio de alliance
@@ -80,9 +80,9 @@ CREATE TABLE IF NOT EXISTS items (
 );
 
 -- =========================
--- HIDEOUTS (criar ANTES de users)
+-- SANCTUARIES (criar ANTES de users)
 -- =========================
-CREATE TABLE IF NOT EXISTS hideouts (
+CREATE TABLE IF NOT EXISTS sanctuaries (
     id SERIAL PRIMARY KEY,
     guild_id INT NOT NULL REFERENCES guilds(id) ON DELETE CASCADE,
     alliance_id INT REFERENCES alliances(id) ON DELETE SET NULL,
@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS users (
     base_hp INTEGER DEFAULT 100,
     current_hp INTEGER DEFAULT 100,
     zona_id BIGINT REFERENCES zone(zone_id),
-    in_hideout_id INT REFERENCES hideouts(id) ON DELETE SET NULL,
+    in_sanctuary_id INT REFERENCES sanctuaries(id) ON DELETE SET NULL,
     previous_zone_id BIGINT REFERENCES zone(zone_id) ON DELETE SET NULL,
     equipped_weapon BIGINT REFERENCES items(id) ON DELETE SET NULL,
     equipped_armor BIGINT REFERENCES items(id) ON DELETE SET NULL,
@@ -199,9 +199,9 @@ ADD COLUMN IF NOT EXISTS current_league VARCHAR(20) DEFAULT 'Bronze',
 ADD COLUMN IF NOT EXISTS league_icon VARCHAR(10) DEFAULT '🥉';
 
 -- =========================
--- UPDATES PARA TABELA HIDEOUTS (via migrations)
+-- UPDATES PARA TABELA SANCTUARIES (via migrations)
 -- =========================
-ALTER TABLE hideouts
+ALTER TABLE sanctuaries
 ADD COLUMN IF NOT EXISTS has_crafting_station BOOLEAN DEFAULT FALSE,
 ADD COLUMN IF NOT EXISTS has_dungeon_portal BOOLEAN DEFAULT FALSE,
 ADD COLUMN IF NOT EXISTS dungeon_cooldown TIMESTAMP;
@@ -530,9 +530,9 @@ CREATE TABLE IF NOT EXISTS npc_daily_quests (
 );
 
 -- =========================
--- TABELAS DE HIDEOUT CRAFTING E DUNGEON
+-- TABELAS DE SANCTUARY CRAFTING E DUNGEON
 -- =========================
-CREATE TABLE IF NOT EXISTS hideout_recipes (
+CREATE TABLE IF NOT EXISTS sanctuary_recipes (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     description TEXT,
@@ -543,26 +543,26 @@ CREATE TABLE IF NOT EXISTS hideout_recipes (
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS hideout_recipe_materials (
-    recipe_id INT REFERENCES hideout_recipes(id) ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS sanctuary_recipe_materials (
+    recipe_id INT REFERENCES sanctuary_recipes(id) ON DELETE CASCADE,
     item_id BIGINT REFERENCES items(id) ON DELETE CASCADE,
     quantity INT NOT NULL,
     PRIMARY KEY (recipe_id, item_id)
 );
 
-CREATE TABLE IF NOT EXISTS hideout_crafting_queue (
+CREATE TABLE IF NOT EXISTS sanctuary_crafting_queue (
     id SERIAL PRIMARY KEY,
-    hideout_id INT REFERENCES hideouts(id) ON DELETE CASCADE,
+    sanctuary_id INT REFERENCES sanctuaries(id) ON DELETE CASCADE,
     user_id BIGINT NOT NULL,
-    recipe_id INT REFERENCES hideout_recipes(id) ON DELETE CASCADE,
+    recipe_id INT REFERENCES sanctuary_recipes(id) ON DELETE CASCADE,
     started_at TIMESTAMP DEFAULT NOW(),
     finishes_at TIMESTAMP NOT NULL,
     completed BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE IF NOT EXISTS hideout_dungeon_runs (
+CREATE TABLE IF NOT EXISTS sanctuary_dungeon_runs (
     id SERIAL PRIMARY KEY,
-    hideout_id INT REFERENCES hideouts(id) ON DELETE CASCADE,
+    sanctuary_id INT REFERENCES sanctuaries(id) ON DELETE CASCADE,
     party_leader_id BIGINT NOT NULL,
     started_at TIMESTAMP DEFAULT NOW(),
     completed_at TIMESTAMP,
@@ -572,16 +572,16 @@ CREATE TABLE IF NOT EXISTS hideout_dungeon_runs (
     rewards_claimed BOOLEAN DEFAULT FALSE
 );
 
-CREATE TABLE IF NOT EXISTS hideout_dungeon_party (
-    run_id INT REFERENCES hideout_dungeon_runs(id) ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS sanctuary_dungeon_party (
+    run_id INT REFERENCES sanctuary_dungeon_runs(id) ON DELETE CASCADE,
     user_id BIGINT NOT NULL,
     power_score INT NOT NULL,
     damage_dealt BIGINT DEFAULT 0,
     PRIMARY KEY (run_id, user_id)
 );
 
-CREATE TABLE IF NOT EXISTS hideout_dungeon_rewards (
-    run_id INT REFERENCES hideout_dungeon_runs(id) ON DELETE CASCADE,
+CREATE TABLE IF NOT EXISTS sanctuary_dungeon_rewards (
+    run_id INT REFERENCES sanctuary_dungeon_runs(id) ON DELETE CASCADE,
     user_id BIGINT NOT NULL,
     item_id BIGINT REFERENCES items(id) ON DELETE SET NULL,
     quantity INT DEFAULT 1,

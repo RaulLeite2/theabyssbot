@@ -39,19 +39,19 @@ class Zahuv(commands.Cog):
             t.cancel()
 
     async def zone_creator_loop(self):
-        """Creates zones every 3 minutes until there are 15 non-hub, non-hideout zones."""
+        """Creates zones every 3 minutes until there are 15 non-hub, non-sanctuary zones."""
         while not self.bot.is_closed():
             try:
-                # count current non-hub, non-hideout zones (normal zones)
+                # count current non-hub, non-sanctuary zones (normal zones)
                 count = await self.bot.db.fetchval(
-                    "SELECT COUNT(*) FROM zone WHERE is_hub = FALSE AND is_hideout = FALSE"
+                    "SELECT COUNT(*) FROM zone WHERE is_hub = FALSE AND is_sanctuary = FALSE"
                 )
                 if count is None:
                     count = 0
                 
                 # Create normal zones (2 names) up to 15
                 if count < 15:
-                    name = await self._generate_zone_name(is_hideout=False)
+                    name = await self._generate_zone_name(is_sanctuary=False)
                     # Tier aleatório com variação: pode ser de 1 a 8, com chance de ser maior
                     # Base tier 1-4, mas pode ter "spike" para tiers mais altos
                     base_tier = random.randint(1, 4)
@@ -62,30 +62,30 @@ class Zahuv(commands.Cog):
                         tier = base_tier
                     
                     await self.bot.db.execute(
-                        "INSERT INTO zone (nome, tier, permanent, is_hub, is_hideout) VALUES ($1,$2,FALSE,FALSE,FALSE)",
+                        "INSERT INTO zone (nome, tier, permanent, is_hub, is_sanctuary) VALUES ($1,$2,FALSE,FALSE,FALSE)",
                         name, tier
                     )
                 
-                # Also create some HO zones (3 names) for potential hideouts
-                ho_count = await self.bot.db.fetchval(
-                    "SELECT COUNT(*) FROM zone WHERE is_hideout = TRUE AND NOT EXISTS (SELECT 1 FROM hideouts h WHERE h.zone_id = zone.zone_id)"
+                # Also create some Sanctuary zones (3 names) for potential sanctuaries
+                sanc_count = await self.bot.db.fetchval(
+                    "SELECT COUNT(*) FROM zone WHERE is_sanctuary = TRUE AND NOT EXISTS (SELECT 1 FROM sanctuaries h WHERE h.zone_id = zone.zone_id)"
                 )
-                if ho_count is None:
-                    ho_count = 0
+                if sanc_count is None:
+                    sanc_count = 0
                 
-                # Keep 10 empty HO zones available
-                if ho_count < 10:
-                    name = await self._generate_zone_name(is_hideout=True)
-                    # HO zones também têm tier aleatório com possibilidade de tier maior
+                # Keep 10 empty Sanctuary zones available
+                if sanc_count < 10:
+                    name = await self._generate_zone_name(is_sanctuary=True)
+                    # Sanctuary zones também têm tier aleatório com possibilidade de tier maior
                     base_tier = random.randint(1, 4)
-                    # 30% de chance de ser tier superior para zonas de HO
+                    # 30% de chance de ser tier superior para zonas de Sanctuary
                     if random.random() < 0.30:
                         tier = random.randint(5, 8)
                     else:
                         tier = base_tier
                     
                     await self.bot.db.execute(
-                        "INSERT INTO zone (nome, tier, permanent, is_hub, is_hideout) VALUES ($1,$2,FALSE,FALSE,TRUE)",
+                        "INSERT INTO zone (nome, tier, permanent, is_hub, is_sanctuary) VALUES ($1,$2,FALSE,FALSE,TRUE)",
                         name, tier
                     )
                 
@@ -99,15 +99,15 @@ class Zahuv(commands.Cog):
         """Every minute create an event in zones without active events. Events last 15 minutes."""
         while not self.bot.is_closed():
             try:
-                # pick zones without active event (only normal zones and hideouts with actual hideouts)
+                # pick zones without active event (only normal zones and sanctuaries with actual sanctuaries)
                 rows = await self.bot.db.fetch(
                     """
                     SELECT zone_id, nome FROM zone z 
                     WHERE NOT EXISTS (SELECT 1 FROM events e WHERE e.zone_id = z.zone_id AND e.active = TRUE) 
                     AND is_hub = FALSE
                     AND (
-                        is_hideout = FALSE 
-                        OR EXISTS (SELECT 1 FROM hideouts h WHERE h.zone_id = z.zone_id)
+                        is_sanctuary = FALSE 
+                        OR EXISTS (SELECT 1 FROM sanctuaries h WHERE h.zone_id = z.zone_id)
                     )
                     """
                 )
@@ -143,19 +143,19 @@ class Zahuv(commands.Cog):
                 await asyncio.sleep(30)
 
     async def zone_expiry_loop(self):
-        """Delete zones older than 3 days (except hubs and hideouts with HO)."""
+        """Delete zones older than 3 days (except hubs and sanctuaries with Sanctuary)."""
         while not self.bot.is_closed():
             try:
                 cutoff = datetime.utcnow() - timedelta(days=3)
-                # find old zones (exclude hideouts with actual hideouts)
+                # find old zones (exclude sanctuaries with actual sanctuaries)
                 rows = await self.bot.db.fetch(
                     """
                     SELECT zone_id FROM zone 
                     WHERE is_hub = FALSE 
                     AND created_at < $1
                     AND (
-                        is_hideout = FALSE 
-                        OR NOT EXISTS (SELECT 1 FROM hideouts h WHERE h.zone_id = zone.zone_id)
+                        is_sanctuary = FALSE 
+                        OR NOT EXISTS (SELECT 1 FROM sanctuaries h WHERE h.zone_id = zone.zone_id)
                     )
                     """, 
                     cutoff
@@ -177,7 +177,7 @@ class Zahuv(commands.Cog):
                 await asyncio.sleep(60)
 
     async def zone_cleanup_loop(self):
-        """Delete zones without players for 15 minutes (except hubs and hideouts with HO)."""
+        """Delete zones without players for 15 minutes (except hubs and sanctuaries with Sanctuary)."""
         while not self.bot.is_closed():
             try:
                 cutoff = datetime.utcnow() - timedelta(minutes=15)
@@ -189,8 +189,8 @@ class Zahuv(commands.Cog):
                     AND z.created_at < $1
                     AND NOT EXISTS (SELECT 1 FROM users u WHERE u.zona_id = z.zone_id)
                     AND (
-                        z.is_hideout = FALSE 
-                        OR NOT EXISTS (SELECT 1 FROM hideouts h WHERE h.zone_id = z.zone_id)
+                        z.is_sanctuary = FALSE 
+                        OR NOT EXISTS (SELECT 1 FROM sanctuaries h WHERE h.zone_id = z.zone_id)
                     )
                     """,
                     cutoff
@@ -219,11 +219,11 @@ class Zahuv(commands.Cog):
         except Exception:
             pass
 
-    async def _generate_zone_name(self, is_hideout: bool = False) -> str:
+    async def _generate_zone_name(self, is_sanctuary: bool = False) -> str:
         """Generate a reasonably unique zone name.
         
         Args:
-            is_hideout: If True, generates 3-word names for HO zones (e.g. "Ai'rathel Sombrio Pântano")
+            is_sanctuary: If True, generates 3-word names for Sanctuary zones (e.g. "Ai'rathel Sombrio Pântano")
                        If False, generates 2-word names for normal zones (e.g. "Sombrio Pântano")
         """
         adjectives = ["Sombrio", "Velho", "Desolado", "Brumoso", "Silente", "Quebrado", "Aurora", 
@@ -231,14 +231,14 @@ class Zahuv(commands.Cog):
         nouns = ["Pântano", "Cume", "Abismo", "Vale", "Ruína", "Fenda", "Bosque", 
                  "Deserto", "Floresta", "Caverna", "Templo", "Fortaleza", "Porto", "Montanha"]
         
-        # HO prefixes (mystical names)
-        ho_prefixes = ["Ai'rathel", "Et'morun", "Al'therion", "Jo'valdris", "Ka'velmir", 
+        # Sanctuary prefixes (mystical names)
+        sanc_prefixes = ["Ai'rathel", "Et'morun", "Al'therion", "Jo'valdris", "Ka'velmir", 
                        "Lu'rathis", "Xe'morven", "Ty'drakkar", "Ba'korath", "Vi'therax"]
         
         for _ in range(10):
-            if is_hideout:
+            if is_sanctuary:
                 # 3-word name: Prefix + Adjective + Noun
-                prefix = random.choice(ho_prefixes)
+                prefix = random.choice(sanc_prefixes)
                 name = f"{prefix} {random.choice(adjectives)} {random.choice(nouns)}"
             else:
                 # 2-word name: Adjective + Noun
@@ -249,7 +249,7 @@ class Zahuv(commands.Cog):
                 return name
         
         # fallback with timestamp
-        prefix_str = random.choice(ho_prefixes) + " " if is_hideout else ""
+        prefix_str = random.choice(sanc_prefixes) + " " if is_sanctuary else ""
         return f"{prefix_str}Portal de Zahuv {int(datetime.utcnow().timestamp())}"
 
 async def setup(bot: commands.Bot):

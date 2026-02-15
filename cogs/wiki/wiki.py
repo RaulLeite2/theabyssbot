@@ -146,7 +146,7 @@ def _scaling_text(item_data: Dict[str, Any]) -> str:
         return "Nenhum"
 
     parts = []
-    for key in ("str", "dex", "int", "vit", "luk"):
+    for key in ("might", "agility", "essence", "vit", "luk"):
         if key in scaling:
             parts.append(f"{key}: {scaling[key]}")
 

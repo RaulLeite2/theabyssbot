@@ -4,9 +4,9 @@
       "base_damage": 0,
       "base_defense": 150,
       "scaling": {
-        "str": 0.5,
-        "dex": 0.5,
-        "int": 1.2
+        "might": 0.5,
+        "agility": 0.5,
+        "essence": 1.2
       },
       "buffs": [
         {"type": "hp_regen", "value": 5}
@@ -21,9 +21,9 @@
       "base_damage": 0,
       "base_defense": 850,
       "scaling": {
-        "str": 1.0,
-        "dex": 1.0,
-        "int": 2.5
+        "might": 1.0,
+        "agility": 1.0,
+        "essence": 2.5
       },
       "buffs": [
         {"type": "hp_regen", "value": 25},
@@ -42,9 +42,9 @@
       "base_damage": 0,
       "base_defense": 200,
       "scaling": {
-        "str": 0.8,
-        "dex": 0.3,
-        "int": 0.2
+        "might": 0.8,
+        "agility": 0.3,
+        "essence": 0.2
       },
       "buffs": [],
       "flags": {
@@ -57,9 +57,9 @@
       "base_damage": 0,
       "base_defense": 1200,
       "scaling": {
-        "str": 2.0,
-        "dex": 1.0,
-        "int": 0.5
+        "might": 2.0,
+        "agility": 1.0,
+        "essence": 0.5
       },
       "buffs": [
         {"type": "fire_resistance", "value": 40},
@@ -77,9 +77,9 @@
       "base_damage": 0,
       "base_defense": 180,
       "scaling": {
-        "str": 0.6,
-        "dex": 0.9,
-        "int": 0.1
+        "might": 0.6,
+        "agility": 0.9,
+        "essence": 0.1
       },
       "buffs": [],
       "flags": {
@@ -94,9 +94,9 @@
       "base_damage": 100,
       "base_defense": 0,
       "scaling": {
-        "str": 1.5,
-        "dex": 0.8,
-        "int": 0.0
+        "might": 1.5,
+        "agility": 0.8,
+        "essence": 0.0
       },
       "buffs": [],
       "flags": {
@@ -109,9 +109,9 @@
       "base_damage": 2500,
       "base_defense": 0,
       "scaling": {
-        "str": 3.5,
-        "dex": 2.0,
-        "int": 1.5
+        "might": 3.5,
+        "agility": 2.0,
+        "essence": 1.5
       },
       "buffs": [
         {"type": "lifesteal", "value": 12},
@@ -130,9 +130,9 @@
       "base_damage": 0,
       "base_defense": 250,
       "scaling": {
-        "str": 1.0,
-        "dex": 0.4,
-        "int": 0.2
+        "might": 1.0,
+        "agility": 0.4,
+        "essence": 0.2
       },
       "buffs": [],
       "flags": {
@@ -147,9 +147,9 @@
       "base_damage": 0,
       "base_defense": 150,
       "scaling": {
-        "str": 0.8,
-        "dex": 0.3,
-        "int": 0.0
+        "might": 0.8,
+        "agility": 0.3,
+        "essence": 0.0
       },
       "buffs": [
         {"type": "block_chance", "value": 10}
@@ -164,9 +164,9 @@
       "base_damage": 0,
       "base_defense": 1800,
       "scaling": {
-        "str": 2.5,
-        "dex": 1.0,
-        "int": 1.5
+        "might": 2.5,
+        "agility": 1.0,
+        "essence": 1.5
       },
       "buffs": [
         {"type": "block_chance", "value": 35},
@@ -185,9 +185,9 @@
       "base_damage": 0,
       "base_defense": 120,
       "scaling": {
-        "str": 0.3,
-        "dex": 1.2,
-        "int": 0.4
+        "might": 0.3,
+        "agility": 1.2,
+        "essence": 0.4
       },
       "buffs": [
         {"type": "movement_speed", "value": 10}
@@ -204,9 +204,9 @@
       "base_damage": 0,
       "base_defense": 140,
       "scaling": {
-        "str": 0.7,
-        "dex": 0.9,
-        "int": 0.1
+        "might": 0.7,
+        "agility": 0.9,
+        "essence": 0.1
       },
       "buffs": [],
       "flags": {
@@ -221,9 +221,9 @@
       "base_damage": 0,
       "base_defense": 100,
       "scaling": {
-        "str": 0.8,
-        "dex": 0.8,
-        "int": 0.8
+        "might": 0.8,
+        "agility": 0.8,
+        "essence": 0.8
       },
       "buffs": [
         {"type": "all_stats", "value": 5}

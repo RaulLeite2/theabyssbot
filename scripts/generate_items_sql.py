@@ -36,7 +36,7 @@ ITEM_TEMPLATES = [
         "slot_id": 2,
         "base_damage": 0,
         "base_defense": 15,
-        "scaling": {"str": 0.1, "dex": 0.05, "int": 0.05},
+        "scaling": {"might": 0.1, "agility": 0.05, "essence": 0.05},
         "buffs": [],
     },
     {
@@ -44,7 +44,7 @@ ITEM_TEMPLATES = [
         "slot_id": 2,
         "base_damage": 5,
         "base_defense": 25,
-        "scaling": {"str": 0.2, "dex": 0.1, "int": 0.1},
+        "scaling": {"might": 0.2, "agility": 0.1, "essence": 0.1},
         "buffs": [{"type": "hp_boost", "value": 20}],
     },
     {
@@ -52,16 +52,16 @@ ITEM_TEMPLATES = [
         "slot_id": 2,
         "base_damage": 0,
         "base_defense": 20,
-        "scaling": {"str": 0.05, "dex": 0.1, "int": 0.3},
-        "buffs": [{"type": "mana_boost", "value": 50}, {"type": "int_boost", "value": 3}],
+        "scaling": {"might": 0.05, "agility": 0.1, "essence": 0.3},
+        "buffs": [{"type": "mana_boost", "value": 50}, {"type": "essence_boost", "value": 3}],
     },
     {
         "name": "Diadema Arcana",
         "slot_id": 2,
         "base_damage": 0,
         "base_defense": 10,
-        "scaling": {"str": 0.0, "dex": 0.05, "int": 0.5},
-        "buffs": [{"type": "mana_regen", "value": 2}, {"type": "int_boost", "value": 5}],
+        "scaling": {"might": 0.0, "agility": 0.05, "essence": 0.5},
+        "buffs": [{"type": "mana_regen", "value": 2}, {"type": "essence_boost", "value": 5}],
     },
 
     # SLOT 3 - LEGS (Pernas)
@@ -70,7 +70,7 @@ ITEM_TEMPLATES = [
         "slot_id": 3,
         "base_damage": 0,
         "base_defense": 20,
-        "scaling": {"str": 0.15, "dex": 0.2, "int": 0.0},
+        "scaling": {"might": 0.15, "agility": 0.2, "essence": 0.0},
         "buffs": [{"type": "dodge_chance", "value": 5}],
     },
     {
@@ -78,7 +78,7 @@ ITEM_TEMPLATES = [
         "slot_id": 3,
         "base_damage": 0,
         "base_defense": 35,
-        "scaling": {"str": 0.3, "dex": 0.1, "int": 0.05},
+        "scaling": {"might": 0.3, "agility": 0.1, "essence": 0.05},
         "buffs": [{"type": "hp_boost", "value": 30}],
     },
     {
@@ -86,7 +86,7 @@ ITEM_TEMPLATES = [
         "slot_id": 3,
         "base_damage": 0,
         "base_defense": 15,
-        "scaling": {"str": 0.05, "dex": 0.15, "int": 0.25},
+        "scaling": {"might": 0.05, "agility": 0.15, "essence": 0.25},
         "buffs": [{"type": "mana_boost", "value": 40}],
     },
 
@@ -96,7 +96,7 @@ ITEM_TEMPLATES = [
         "slot_id": 4,
         "base_damage": 15,
         "base_defense": 5,
-        "scaling": {"str": 0.4, "dex": 0.2, "int": 0.0},
+        "scaling": {"might": 0.4, "agility": 0.2, "essence": 0.0},
         "buffs": [],
     },
     {
@@ -104,7 +104,7 @@ ITEM_TEMPLATES = [
         "slot_id": 4,
         "base_damage": 25,
         "base_defense": 10,
-        "scaling": {"str": 0.5, "dex": 0.15, "int": 0.0},
+        "scaling": {"might": 0.5, "agility": 0.15, "essence": 0.0},
         "buffs": [{"type": "damage_boost", "value": 10}],
     },
     {
@@ -112,7 +112,7 @@ ITEM_TEMPLATES = [
         "slot_id": 4,
         "base_damage": 20,
         "base_defense": 0,
-        "scaling": {"str": 0.3, "dex": 0.5, "int": 0.1},
+        "scaling": {"might": 0.3, "agility": 0.5, "essence": 0.1},
         "buffs": [{"type": "crit_chance", "value": 15}],
     },
     {
@@ -120,7 +120,7 @@ ITEM_TEMPLATES = [
         "slot_id": 4,
         "base_damage": 10,
         "base_defense": 0,
-        "scaling": {"str": 0.05, "dex": 0.1, "int": 0.6},
+        "scaling": {"might": 0.05, "agility": 0.1, "essence": 0.6},
         "buffs": [{"type": "mana_boost", "value": 60}, {"type": "spell_power", "value": 20}],
     },
     {
@@ -128,8 +128,66 @@ ITEM_TEMPLATES = [
         "slot_id": 4,
         "base_damage": 35,
         "base_defense": 5,
-        "scaling": {"str": 0.65, "dex": 0.1, "int": 0.0},
+        "scaling": {"might": 0.65, "agility": 0.1, "essence": 0.0},
         "buffs": [{"type": "damage_boost", "value": 15}, {"type": "hp_boost", "value": 25}],
+    },
+    
+    # NEW WEAPONS - Fase Adicional
+    {
+        "name": "Lança Sombria",
+        "slot_id": 4,
+        "base_damage": 28,
+        "base_defense": 8,
+        "scaling": {"might": 0.35, "agility": 0.35, "essence": 0.1},
+        "buffs": [{"type": "armor_pen", "value": 12}, {"type": "crit_chance", "value": 8}],
+    },
+    {
+        "name": "Arco Longo",
+        "slot_id": 4,
+        "base_damage": 22,
+        "base_defense": 2,
+        "scaling": {"might": 0.15, "agility": 0.55, "essence": 0.05},
+        "buffs": [{"type": "crit_damage", "value": 35}, {"type": "range_bonus", "value": 50}],
+    },
+    {
+        "name": "Martelo de Guerra",
+        "slot_id": 4,
+        "base_damage": 42,
+        "base_defense": 12,
+        "scaling": {"might": 0.75, "agility": 0.0, "essence": 0.0},
+        "buffs": [{"type": "hp_boost", "value": 50}, {"type": "stun_chance", "value": 20}],
+    },
+    {
+        "name": "Adaga Venenosa",
+        "slot_id": 4,
+        "base_damage": 18,
+        "base_defense": 0,
+        "scaling": {"might": 0.2, "agility": 0.6, "essence": 0.15},
+        "buffs": [{"type": "attack_speed", "value": 25}, {"type": "poison_damage", "value": 15}],
+    },
+    {
+        "name": "Grimório Ancestral",
+        "slot_id": 4,
+        "base_damage": 8,
+        "base_defense": 5,
+        "scaling": {"might": 0.0, "agility": 0.05, "essence": 0.75},
+        "buffs": [{"type": "mana_boost", "value": 100}, {"type": "spell_power", "value": 40}, {"type": "cooldown_reduction", "value": 15}],
+    },
+    {
+        "name": "Foice Maldita",
+        "slot_id": 4,
+        "base_damage": 30,
+        "base_defense": 3,
+        "scaling": {"might": 0.45, "agility": 0.25, "essence": 0.25},
+        "buffs": [{"type": "lifesteal", "value": 18}, {"type": "shadow_damage", "value": 20}],
+    },
+    {
+        "name": "Katana Relâmpago",
+        "slot_id": 4,
+        "base_damage": 24,
+        "base_defense": 4,
+        "scaling": {"might": 0.3, "agility": 0.55, "essence": 0.1},
+        "buffs": [{"type": "attack_speed", "value": 35}, {"type": "lightning_damage", "value": 18}, {"type": "dodge_chance", "value": 10}],
     },
 
     # SLOT 5 - TORSO (Peito)
@@ -138,7 +196,7 @@ ITEM_TEMPLATES = [
         "slot_id": 5,
         "base_damage": 0,
         "base_defense": 40,
-        "scaling": {"str": 0.2, "dex": 0.15, "int": 0.0},
+        "scaling": {"might": 0.2, "agility": 0.15, "essence": 0.0},
         "buffs": [{"type": "hp_boost", "value": 40}],
     },
     {
@@ -146,7 +204,7 @@ ITEM_TEMPLATES = [
         "slot_id": 5,
         "base_damage": 0,
         "base_defense": 60,
-        "scaling": {"str": 0.3, "dex": 0.05, "int": 0.05},
+        "scaling": {"might": 0.3, "agility": 0.05, "essence": 0.05},
         "buffs": [{"type": "hp_boost", "value": 60}, {"type": "def_boost", "value": 15}],
     },
     {
@@ -154,7 +212,7 @@ ITEM_TEMPLATES = [
         "slot_id": 5,
         "base_damage": 5,
         "base_defense": 20,
-        "scaling": {"str": 0.1, "dex": 0.15, "int": 0.4},
+        "scaling": {"might": 0.1, "agility": 0.15, "essence": 0.4},
         "buffs": [{"type": "mana_boost", "value": 80}, {"type": "spell_power", "value": 25}],
     },
     {
@@ -162,7 +220,7 @@ ITEM_TEMPLATES = [
         "slot_id": 5,
         "base_damage": 10,
         "base_defense": 30,
-        "scaling": {"str": 0.2, "dex": 0.25, "int": 0.3},
+        "scaling": {"might": 0.2, "agility": 0.25, "essence": 0.3},
         "buffs": [{"type": "hp_regen", "value": 3}, {"type": "mana_regen", "value": 2}],
     },
 
@@ -172,7 +230,7 @@ ITEM_TEMPLATES = [
         "slot_id": 6,
         "base_damage": 0,
         "base_defense": 25,
-        "scaling": {"str": 0.2, "dex": 0.05, "int": 0.0},
+        "scaling": {"might": 0.2, "agility": 0.05, "essence": 0.0},
         "buffs": [{"type": "block_chance", "value": 10}],
     },
     {
@@ -180,7 +238,7 @@ ITEM_TEMPLATES = [
         "slot_id": 6,
         "base_damage": 0,
         "base_defense": 40,
-        "scaling": {"str": 0.3, "dex": 0.0, "int": 0.05},
+        "scaling": {"might": 0.3, "agility": 0.0, "essence": 0.05},
         "buffs": [{"type": "block_chance", "value": 20}, {"type": "hp_boost", "value": 30}],
     },
     {
@@ -188,7 +246,7 @@ ITEM_TEMPLATES = [
         "slot_id": 6,
         "base_damage": 12,
         "base_defense": 5,
-        "scaling": {"str": 0.1, "dex": 0.4, "int": 0.1},
+        "scaling": {"might": 0.1, "agility": 0.4, "essence": 0.1},
         "buffs": [{"type": "crit_damage", "value": 30}],
     },
     {
@@ -196,7 +254,7 @@ ITEM_TEMPLATES = [
         "slot_id": 6,
         "base_damage": 5,
         "base_defense": 10,
-        "scaling": {"str": 0.0, "dex": 0.05, "int": 0.5},
+        "scaling": {"might": 0.0, "agility": 0.05, "essence": 0.5},
         "buffs": [{"type": "mana_boost", "value": 50}, {"type": "spell_power", "value": 15}],
     },
 
@@ -206,7 +264,7 @@ ITEM_TEMPLATES = [
         "slot_id": 8,
         "base_damage": 0,
         "base_defense": 10,
-        "scaling": {"str": 0.0, "dex": 0.2, "int": 0.0},
+        "scaling": {"might": 0.0, "agility": 0.2, "essence": 0.0},
         "buffs": [{"type": "dodge_chance", "value": 8}],
     },
     {
@@ -214,7 +272,7 @@ ITEM_TEMPLATES = [
         "slot_id": 8,
         "base_damage": 0,
         "base_defense": 15,
-        "scaling": {"str": 0.1, "dex": 0.1, "int": 0.0},
+        "scaling": {"might": 0.1, "agility": 0.1, "essence": 0.0},
         "buffs": [{"type": "hp_boost", "value": 15}],
     },
     {
@@ -222,7 +280,7 @@ ITEM_TEMPLATES = [
         "slot_id": 8,
         "base_damage": 0,
         "base_defense": 8,
-        "scaling": {"str": 0.05, "dex": 0.3, "int": 0.1},
+        "scaling": {"might": 0.05, "agility": 0.3, "essence": 0.1},
         "buffs": [{"type": "dodge_chance", "value": 15}, {"type": "speed_boost", "value": 20}],
     },
 
@@ -232,7 +290,7 @@ ITEM_TEMPLATES = [
         "slot_id": 1,
         "base_damage": 0,
         "base_defense": 0,
-        "scaling": {"str": 0.05, "dex": 0.05, "int": 0.05},
+        "scaling": {"might": 0.05, "agility": 0.05, "essence": 0.05},
         "buffs": [{"type": "hp_boost", "value": 10}],
     },
     {
@@ -240,7 +298,7 @@ ITEM_TEMPLATES = [
         "slot_id": 1,
         "base_damage": 5,
         "base_defense": 5,
-        "scaling": {"str": 0.1, "dex": 0.1, "int": 0.1},
+        "scaling": {"might": 0.1, "agility": 0.1, "essence": 0.1},
         "buffs": [{"type": "hp_boost", "value": 20}, {"type": "damage_boost", "value": 5}],
     },
     {
@@ -248,7 +306,7 @@ ITEM_TEMPLATES = [
         "slot_id": 1,
         "base_damage": 0,
         "base_defense": 0,
-        "scaling": {"str": 0.0, "dex": 0.05, "int": 0.3},
+        "scaling": {"might": 0.0, "agility": 0.05, "essence": 0.3},
         "buffs": [{"type": "mana_boost", "value": 60}, {"type": "spell_power", "value": 20}],
     },
 ]
